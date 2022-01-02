@@ -1,0 +1,759 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>interFEBio.Boundary API documentation</title>
+<meta name="description" content="This module deals with boundary conditions (Fixed, prescribed, contact) …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>interFEBio.Boundary</code></h1>
+</header>
+<section id="section-intro">
+<p>This module deals with boundary conditions (Fixed, prescribed, contact)</p>
+<h1 id="todo">TODO</h1>
+<ul>
+<li>Enable spring BC (check spec 3.0 format)</li>
+<li>Enable contact default parameters for majority of the methods (is just implemented for sliding-facet-on-facet)</li>
+</ul>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+This module deals with boundary conditions (Fixed, prescribed, contact)
+
+# TODO
+
+ - Enable spring BC (check spec 3.0 format)
+ - Enable contact default parameters for majority of the methods (is just implemented for sliding-facet-on-facet)
+
+&#34;&#34;&#34;
+from __future__ import print_function
+from builtins import range
+from builtins import object
+
+
+class Boundary(object):
+    &#39;&#39;&#39;
+    Class for assign boundary conditions
+    &#39;&#39;&#39;
+
+    def __init__(self,steps=1):
+        &#34;&#34;&#34;
+        Create a list of BC containing a dictionary with the different types at each step.
+
+        Args:
+        ----------
+
+            steps: Number of steps for the BC list.
+
+        &#34;&#34;&#34;
+        self.bcs = []
+        for _ in range(steps+1):
+            self.bcs.append({&#39;fixed&#39;: [], &#39;prescribed&#39;: [], &#39;prescribed relative&#39;: [], &#39;contact&#39;: [],&#39;spring&#39;: []})
+
+    def addFixed(self,step=0,nset=None,nodeid=None,dof=None):
+        &#34;&#34;&#34;
+
+        Add a fixed BC to a nodeset or nodeid (as list of nodes or single node integer).
+        The fixed dofs needs to be comma separated (e.g. &#39;x,y,z&#39;).
+        The default step for fixed BC is 0 (that means a permanent BC in the entire FE analysis).
+
+        Args
+        ----------
+
+            step (int): step at which the BC will be applied.
+
+            nset (str): Nodeset which will be fixed.
+
+            nodeid (int/list): Node id or list of node ids to be Fixed.
+
+            dof (str): Degree/s of freedom to be fixed. Comma separated (&#39;x,y,z&#39;)
+
+        Example
+        ----------
+        &gt;&gt;&gt; addFixed(step=1, nset=&#39;bottomFace&#39;, dof=&#39;z&#39;)
+
+        &#34;&#34;&#34;
+        if dof is None:#: Instance variable&#39;s doc-comment
+            print(&#39;WARNING: No degree of freedom was specified for this boundary condition.  Skipping...&#39;)
+            pass
+
+        if nset is None and nodeid is None:
+            print(&#39;WARNING: Must specify either a node set or a node id.  Skipping...&#39;)
+            pass
+
+        if nset is not None:
+            #print(nset)
+            #for n in nset:
+            #    self.bcs[0][&#39;fixed&#39;].append([n,dof])
+            self.bcs[0][&#39;fixed&#39;].append([&#39;nodeset&#39;,nset,dof])
+
+        if nodeid is not None:
+            if isinstance(nodeid, list):
+                for n in nodeid:
+                    self.bcs[0][&#39;fixed&#39;].append([&#39;node&#39;,str(n),dof])
+            else:
+                self.bcs[0][&#39;fixed&#39;].append([&#39;node&#39;,str(nodeid),dof])
+
+
+    def addPrescribed(self,nset=None,step=0,nodeid=None,dof=None,lc=None,scale=None,ptype=&#39;prescribed&#39;):
+        &#34;&#34;&#34;
+
+        Add a prescribed BC to a nodeset or nodeid (as list of nodes or single node integer).
+        The default step for prescribed BC is 0 (that means a permanent BC in the entire FE analysis).
+
+        Args
+        ----------
+
+            step (int): step at which the BC will be applied.
+
+            nset (str): Nodeset which will be fixed.
+
+            nodeid (int/list): Node id or list of node ids to be Fixed.
+
+            dof (str): Degree/s of freedom to be fixed. Single axis.
+
+            lc (str): Load controller id.
+
+            scale (float): Scale to be applied in the BC
+
+            ptype (str): &#39;prescribed&#39;/&#39;prescribed relative&#39; identifier.
+
+        Example
+        ----------
+        &gt;&gt;&gt; addPrescribed(step=1, nset=&#39;bottomFace&#39;, dof=&#39;z&#39;, lc=&#39;1&#39;, scale=2, ptype=&#39;prescribed relative&#39;)
+
+        &#34;&#34;&#34;
+        if dof is None:
+            print(&#39;WARNING: No degree of freedom was specified for this boundary condition.  Skipping BC assignment...&#39;)
+            pass
+
+        if nset is None and nodeid is None:
+            print(&#39;WARNING: Must specify either a node set or a node id.  Skipping BC assignment...&#39;)
+            pass
+
+        if lc is None:
+            print(&#39;WARNING: Must specify a load curve ID. Skipping BC assignment...&#39;)
+            pass
+
+        if scale is None:
+            print(&#39;WARNING: No scale specified for this boundary condition.  Using default of 1.0...&#39;)
+            scale = 1.0
+
+
+        if nset is not None:
+            self.bcs[step][keywd].append([&#39;nodeset&#39;,nset,dof,lc,scale])
+
+        if nodeid is not None:
+            if isinstance(nodeid, list):
+                for n in nodeid:
+                    self.bcs[step][keywd].append([&#39;node&#39;,str(n),dof,lc,scale])
+            else:
+                self.bcs[step][keywd].append([&#39;node&#39;,str(nodeid),dof,lc,scale])
+
+    def addContact(self,step=0,ctype=None,master=None,slave=None,attributes=None):
+        &#34;&#34;&#34;
+
+        Add a contact interface between two surfaces.
+
+        Args
+        ----------
+
+            step (int): step at which the BC will be applied.
+
+            ctype (str): Contact type.
+                sliding-node-on-facet
+                sliding-facet-on-facet
+                sliding-elastic
+                sliding-biphasic
+                sliding-biphasic-solute
+                sliding-multiphasic
+                rigid_wall
+                rigid_joint
+                tied
+                sticky
+                tied-biphasic
+
+            master (str): Master surface name.
+
+            slave (str): Slave surface name.
+
+            attributes (dict): Dictionary of attributes.
+
+
+        Example
+        ----------
+        &gt;&gt;&gt; addContact(step=1,ctype=&#39;sliding-facet-on-facet&#39;,master=&#34;top&#34;,slave=&#34;contact&#34;,attributes={&#39;auto_penalty&#39; : 1, &#39;update_penalty&#39; : 1})
+
+        &#34;&#34;&#34;
+        if ctype is None:
+            print(&#39;WARNING: Did not specify a contact type. Skipping assignment...&#39;)
+            pass
+
+        elif master is None or slave is None:
+            print(&#39;WARNING: Did not specify an appropriate value for the master and/or slave.  Skipping assignment...&#39;)
+            pass
+        try:
+            if isinstance(master[0][0],list):
+                dmy = []
+                for i in master:
+                    for j in i:
+                        dmy.append(j)
+                master = dmy
+        except:
+            master = master
+        try:
+            if isinstance(slave[0][0],list):
+                dmy = []
+                for i in slave:
+                    for j in i:
+                        dmy.append(j)
+                slave = dmy
+        except:
+            slave = slave
+        self.bcs[step][&#39;contact&#39;].append({&#39;type&#39;: ctype, &#39;master&#39;: master, &#39;slave&#39;: slave, &#39;attributes&#39;: attributes})
+
+    #Springs not verified yet.
+    # def addSpring(self,step=0,stype=&#39;linear&#39;,nodes=[None,None],E=None,lc=None,scale=1.0):
+    #     if len(nodes) != 2 or not isinstance(nodes[0],int) or not isinstance(nodes[1],int):
+    #         print(&#39;WARNING: List of nodes must be 2 integer elements.  Skipping spring definition...&#39;)
+    #         pass
+    #     if stype==&#39;linear&#39; or stype==&#39;tension-only nonlinear&#39;:
+    #         if E is None:
+    #             print(&#39;WARNING: Must specify a spring stiffness if type is linear or tension-only linear.  Skipping spring definition...&#39;)
+    #             pass
+    #     if stype==&#39;nonlinear&#39; and lc is None:
+    #         print(&#39;WARNING: Must specify a force load curve if type is nonlinear.  Skipping spring definition...&#39;)
+    #         pass
+    #     if stype==&#39;nonlinear&#39; and scale is None:
+    #         print(&#39;WARNING: No scale was specified.  Using default value of 1.0...&#39;)
+    #         scale = 1.0
+    #
+    #     self.bcs[step][&#39;spring&#39;].append({&#39;stype&#39;:stype,&#39;n1&#39;:nodes[0],&#39;n2&#39;:nodes[1],&#39;E&#39;:E,&#39;lc&#39;:lc,&#39;scale&#39;:scale})</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="interFEBio.Boundary.Boundary"><code class="flex name class">
+<span>class <span class="ident">Boundary</span></span>
+<span>(</span><span>steps=1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class for assign boundary conditions</p>
+<p>Create a list of BC containing a dictionary with the different types at each step.</p>
+<h2 id="args">Args:</h2>
+<pre><code>steps: Number of steps for the BC list.
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Boundary(object):
+    &#39;&#39;&#39;
+    Class for assign boundary conditions
+    &#39;&#39;&#39;
+
+    def __init__(self,steps=1):
+        &#34;&#34;&#34;
+        Create a list of BC containing a dictionary with the different types at each step.
+
+        Args:
+        ----------
+
+            steps: Number of steps for the BC list.
+
+        &#34;&#34;&#34;
+        self.bcs = []
+        for _ in range(steps+1):
+            self.bcs.append({&#39;fixed&#39;: [], &#39;prescribed&#39;: [], &#39;prescribed relative&#39;: [], &#39;contact&#39;: [],&#39;spring&#39;: []})
+
+    def addFixed(self,step=0,nset=None,nodeid=None,dof=None):
+        &#34;&#34;&#34;
+
+        Add a fixed BC to a nodeset or nodeid (as list of nodes or single node integer).
+        The fixed dofs needs to be comma separated (e.g. &#39;x,y,z&#39;).
+        The default step for fixed BC is 0 (that means a permanent BC in the entire FE analysis).
+
+        Args
+        ----------
+
+            step (int): step at which the BC will be applied.
+
+            nset (str): Nodeset which will be fixed.
+
+            nodeid (int/list): Node id or list of node ids to be Fixed.
+
+            dof (str): Degree/s of freedom to be fixed. Comma separated (&#39;x,y,z&#39;)
+
+        Example
+        ----------
+        &gt;&gt;&gt; addFixed(step=1, nset=&#39;bottomFace&#39;, dof=&#39;z&#39;)
+
+        &#34;&#34;&#34;
+        if dof is None:#: Instance variable&#39;s doc-comment
+            print(&#39;WARNING: No degree of freedom was specified for this boundary condition.  Skipping...&#39;)
+            pass
+
+        if nset is None and nodeid is None:
+            print(&#39;WARNING: Must specify either a node set or a node id.  Skipping...&#39;)
+            pass
+
+        if nset is not None:
+            #print(nset)
+            #for n in nset:
+            #    self.bcs[0][&#39;fixed&#39;].append([n,dof])
+            self.bcs[0][&#39;fixed&#39;].append([&#39;nodeset&#39;,nset,dof])
+
+        if nodeid is not None:
+            if isinstance(nodeid, list):
+                for n in nodeid:
+                    self.bcs[0][&#39;fixed&#39;].append([&#39;node&#39;,str(n),dof])
+            else:
+                self.bcs[0][&#39;fixed&#39;].append([&#39;node&#39;,str(nodeid),dof])
+
+
+    def addPrescribed(self,nset=None,step=0,nodeid=None,dof=None,lc=None,scale=None,ptype=&#39;prescribed&#39;):
+        &#34;&#34;&#34;
+
+        Add a prescribed BC to a nodeset or nodeid (as list of nodes or single node integer).
+        The default step for prescribed BC is 0 (that means a permanent BC in the entire FE analysis).
+
+        Args
+        ----------
+
+            step (int): step at which the BC will be applied.
+
+            nset (str): Nodeset which will be fixed.
+
+            nodeid (int/list): Node id or list of node ids to be Fixed.
+
+            dof (str): Degree/s of freedom to be fixed. Single axis.
+
+            lc (str): Load controller id.
+
+            scale (float): Scale to be applied in the BC
+
+            ptype (str): &#39;prescribed&#39;/&#39;prescribed relative&#39; identifier.
+
+        Example
+        ----------
+        &gt;&gt;&gt; addPrescribed(step=1, nset=&#39;bottomFace&#39;, dof=&#39;z&#39;, lc=&#39;1&#39;, scale=2, ptype=&#39;prescribed relative&#39;)
+
+        &#34;&#34;&#34;
+        if dof is None:
+            print(&#39;WARNING: No degree of freedom was specified for this boundary condition.  Skipping BC assignment...&#39;)
+            pass
+
+        if nset is None and nodeid is None:
+            print(&#39;WARNING: Must specify either a node set or a node id.  Skipping BC assignment...&#39;)
+            pass
+
+        if lc is None:
+            print(&#39;WARNING: Must specify a load curve ID. Skipping BC assignment...&#39;)
+            pass
+
+        if scale is None:
+            print(&#39;WARNING: No scale specified for this boundary condition.  Using default of 1.0...&#39;)
+            scale = 1.0
+
+
+        if nset is not None:
+            self.bcs[step][keywd].append([&#39;nodeset&#39;,nset,dof,lc,scale])
+
+        if nodeid is not None:
+            if isinstance(nodeid, list):
+                for n in nodeid:
+                    self.bcs[step][keywd].append([&#39;node&#39;,str(n),dof,lc,scale])
+            else:
+                self.bcs[step][keywd].append([&#39;node&#39;,str(nodeid),dof,lc,scale])
+
+    def addContact(self,step=0,ctype=None,master=None,slave=None,attributes=None):
+        &#34;&#34;&#34;
+
+        Add a contact interface between two surfaces.
+
+        Args
+        ----------
+
+            step (int): step at which the BC will be applied.
+
+            ctype (str): Contact type.
+                sliding-node-on-facet
+                sliding-facet-on-facet
+                sliding-elastic
+                sliding-biphasic
+                sliding-biphasic-solute
+                sliding-multiphasic
+                rigid_wall
+                rigid_joint
+                tied
+                sticky
+                tied-biphasic
+
+            master (str): Master surface name.
+
+            slave (str): Slave surface name.
+
+            attributes (dict): Dictionary of attributes.
+
+
+        Example
+        ----------
+        &gt;&gt;&gt; addContact(step=1,ctype=&#39;sliding-facet-on-facet&#39;,master=&#34;top&#34;,slave=&#34;contact&#34;,attributes={&#39;auto_penalty&#39; : 1, &#39;update_penalty&#39; : 1})
+
+        &#34;&#34;&#34;
+        if ctype is None:
+            print(&#39;WARNING: Did not specify a contact type. Skipping assignment...&#39;)
+            pass
+
+        elif master is None or slave is None:
+            print(&#39;WARNING: Did not specify an appropriate value for the master and/or slave.  Skipping assignment...&#39;)
+            pass
+        try:
+            if isinstance(master[0][0],list):
+                dmy = []
+                for i in master:
+                    for j in i:
+                        dmy.append(j)
+                master = dmy
+        except:
+            master = master
+        try:
+            if isinstance(slave[0][0],list):
+                dmy = []
+                for i in slave:
+                    for j in i:
+                        dmy.append(j)
+                slave = dmy
+        except:
+            slave = slave
+        self.bcs[step][&#39;contact&#39;].append({&#39;type&#39;: ctype, &#39;master&#39;: master, &#39;slave&#39;: slave, &#39;attributes&#39;: attributes})
+
+    #Springs not verified yet.
+    # def addSpring(self,step=0,stype=&#39;linear&#39;,nodes=[None,None],E=None,lc=None,scale=1.0):
+    #     if len(nodes) != 2 or not isinstance(nodes[0],int) or not isinstance(nodes[1],int):
+    #         print(&#39;WARNING: List of nodes must be 2 integer elements.  Skipping spring definition...&#39;)
+    #         pass
+    #     if stype==&#39;linear&#39; or stype==&#39;tension-only nonlinear&#39;:
+    #         if E is None:
+    #             print(&#39;WARNING: Must specify a spring stiffness if type is linear or tension-only linear.  Skipping spring definition...&#39;)
+    #             pass
+    #     if stype==&#39;nonlinear&#39; and lc is None:
+    #         print(&#39;WARNING: Must specify a force load curve if type is nonlinear.  Skipping spring definition...&#39;)
+    #         pass
+    #     if stype==&#39;nonlinear&#39; and scale is None:
+    #         print(&#39;WARNING: No scale was specified.  Using default value of 1.0...&#39;)
+    #         scale = 1.0
+    #
+    #     self.bcs[step][&#39;spring&#39;].append({&#39;stype&#39;:stype,&#39;n1&#39;:nodes[0],&#39;n2&#39;:nodes[1],&#39;E&#39;:E,&#39;lc&#39;:lc,&#39;scale&#39;:scale})</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="interFEBio.Boundary.Boundary.addContact"><code class="name flex">
+<span>def <span class="ident">addContact</span></span>(<span>self, step=0, ctype=None, master=None, slave=None, attributes=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a contact interface between two surfaces.</p>
+<h2 id="args">Args</h2>
+<pre><code>step (int): step at which the BC will be applied.
+
+ctype (str): Contact type.
+    sliding-node-on-facet
+    sliding-facet-on-facet
+    sliding-elastic
+    sliding-biphasic
+    sliding-biphasic-solute
+    sliding-multiphasic
+    rigid_wall
+    rigid_joint
+    tied
+    sticky
+    tied-biphasic
+
+master (str): Master surface name.
+
+slave (str): Slave surface name.
+
+attributes (dict): Dictionary of attributes.
+</code></pre>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; addContact(step=1,ctype='sliding-facet-on-facet',master=&quot;top&quot;,slave=&quot;contact&quot;,attributes={'auto_penalty' : 1, 'update_penalty' : 1})
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def addContact(self,step=0,ctype=None,master=None,slave=None,attributes=None):
+    &#34;&#34;&#34;
+
+    Add a contact interface between two surfaces.
+
+    Args
+    ----------
+
+        step (int): step at which the BC will be applied.
+
+        ctype (str): Contact type.
+            sliding-node-on-facet
+            sliding-facet-on-facet
+            sliding-elastic
+            sliding-biphasic
+            sliding-biphasic-solute
+            sliding-multiphasic
+            rigid_wall
+            rigid_joint
+            tied
+            sticky
+            tied-biphasic
+
+        master (str): Master surface name.
+
+        slave (str): Slave surface name.
+
+        attributes (dict): Dictionary of attributes.
+
+
+    Example
+    ----------
+    &gt;&gt;&gt; addContact(step=1,ctype=&#39;sliding-facet-on-facet&#39;,master=&#34;top&#34;,slave=&#34;contact&#34;,attributes={&#39;auto_penalty&#39; : 1, &#39;update_penalty&#39; : 1})
+
+    &#34;&#34;&#34;
+    if ctype is None:
+        print(&#39;WARNING: Did not specify a contact type. Skipping assignment...&#39;)
+        pass
+
+    elif master is None or slave is None:
+        print(&#39;WARNING: Did not specify an appropriate value for the master and/or slave.  Skipping assignment...&#39;)
+        pass
+    try:
+        if isinstance(master[0][0],list):
+            dmy = []
+            for i in master:
+                for j in i:
+                    dmy.append(j)
+            master = dmy
+    except:
+        master = master
+    try:
+        if isinstance(slave[0][0],list):
+            dmy = []
+            for i in slave:
+                for j in i:
+                    dmy.append(j)
+            slave = dmy
+    except:
+        slave = slave
+    self.bcs[step][&#39;contact&#39;].append({&#39;type&#39;: ctype, &#39;master&#39;: master, &#39;slave&#39;: slave, &#39;attributes&#39;: attributes})</code></pre>
+</details>
+</dd>
+<dt id="interFEBio.Boundary.Boundary.addFixed"><code class="name flex">
+<span>def <span class="ident">addFixed</span></span>(<span>self, step=0, nset=None, nodeid=None, dof=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a fixed BC to a nodeset or nodeid (as list of nodes or single node integer).
+The fixed dofs needs to be comma separated (e.g. 'x,y,z').
+The default step for fixed BC is 0 (that means a permanent BC in the entire FE analysis).</p>
+<h2 id="args">Args</h2>
+<pre><code>step (int): step at which the BC will be applied.
+
+nset (str): Nodeset which will be fixed.
+
+nodeid (int/list): Node id or list of node ids to be Fixed.
+
+dof (str): Degree/s of freedom to be fixed. Comma separated ('x,y,z')
+</code></pre>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; addFixed(step=1, nset='bottomFace', dof='z')
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def addFixed(self,step=0,nset=None,nodeid=None,dof=None):
+    &#34;&#34;&#34;
+
+    Add a fixed BC to a nodeset or nodeid (as list of nodes or single node integer).
+    The fixed dofs needs to be comma separated (e.g. &#39;x,y,z&#39;).
+    The default step for fixed BC is 0 (that means a permanent BC in the entire FE analysis).
+
+    Args
+    ----------
+
+        step (int): step at which the BC will be applied.
+
+        nset (str): Nodeset which will be fixed.
+
+        nodeid (int/list): Node id or list of node ids to be Fixed.
+
+        dof (str): Degree/s of freedom to be fixed. Comma separated (&#39;x,y,z&#39;)
+
+    Example
+    ----------
+    &gt;&gt;&gt; addFixed(step=1, nset=&#39;bottomFace&#39;, dof=&#39;z&#39;)
+
+    &#34;&#34;&#34;
+    if dof is None:#: Instance variable&#39;s doc-comment
+        print(&#39;WARNING: No degree of freedom was specified for this boundary condition.  Skipping...&#39;)
+        pass
+
+    if nset is None and nodeid is None:
+        print(&#39;WARNING: Must specify either a node set or a node id.  Skipping...&#39;)
+        pass
+
+    if nset is not None:
+        #print(nset)
+        #for n in nset:
+        #    self.bcs[0][&#39;fixed&#39;].append([n,dof])
+        self.bcs[0][&#39;fixed&#39;].append([&#39;nodeset&#39;,nset,dof])
+
+    if nodeid is not None:
+        if isinstance(nodeid, list):
+            for n in nodeid:
+                self.bcs[0][&#39;fixed&#39;].append([&#39;node&#39;,str(n),dof])
+        else:
+            self.bcs[0][&#39;fixed&#39;].append([&#39;node&#39;,str(nodeid),dof])</code></pre>
+</details>
+</dd>
+<dt id="interFEBio.Boundary.Boundary.addPrescribed"><code class="name flex">
+<span>def <span class="ident">addPrescribed</span></span>(<span>self, nset=None, step=0, nodeid=None, dof=None, lc=None, scale=None, ptype='prescribed')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Add a prescribed BC to a nodeset or nodeid (as list of nodes or single node integer).
+The default step for prescribed BC is 0 (that means a permanent BC in the entire FE analysis).</p>
+<h2 id="args">Args</h2>
+<pre><code>step (int): step at which the BC will be applied.
+
+nset (str): Nodeset which will be fixed.
+
+nodeid (int/list): Node id or list of node ids to be Fixed.
+
+dof (str): Degree/s of freedom to be fixed. Single axis.
+
+lc (str): Load controller id.
+
+scale (float): Scale to be applied in the BC
+
+ptype (str): 'prescribed'/'prescribed relative' identifier.
+</code></pre>
+<h2 id="example">Example</h2>
+<pre><code class="language-python-repl">&gt;&gt;&gt; addPrescribed(step=1, nset='bottomFace', dof='z', lc='1', scale=2, ptype='prescribed relative')
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def addPrescribed(self,nset=None,step=0,nodeid=None,dof=None,lc=None,scale=None,ptype=&#39;prescribed&#39;):
+    &#34;&#34;&#34;
+
+    Add a prescribed BC to a nodeset or nodeid (as list of nodes or single node integer).
+    The default step for prescribed BC is 0 (that means a permanent BC in the entire FE analysis).
+
+    Args
+    ----------
+
+        step (int): step at which the BC will be applied.
+
+        nset (str): Nodeset which will be fixed.
+
+        nodeid (int/list): Node id or list of node ids to be Fixed.
+
+        dof (str): Degree/s of freedom to be fixed. Single axis.
+
+        lc (str): Load controller id.
+
+        scale (float): Scale to be applied in the BC
+
+        ptype (str): &#39;prescribed&#39;/&#39;prescribed relative&#39; identifier.
+
+    Example
+    ----------
+    &gt;&gt;&gt; addPrescribed(step=1, nset=&#39;bottomFace&#39;, dof=&#39;z&#39;, lc=&#39;1&#39;, scale=2, ptype=&#39;prescribed relative&#39;)
+
+    &#34;&#34;&#34;
+    if dof is None:
+        print(&#39;WARNING: No degree of freedom was specified for this boundary condition.  Skipping BC assignment...&#39;)
+        pass
+
+    if nset is None and nodeid is None:
+        print(&#39;WARNING: Must specify either a node set or a node id.  Skipping BC assignment...&#39;)
+        pass
+
+    if lc is None:
+        print(&#39;WARNING: Must specify a load curve ID. Skipping BC assignment...&#39;)
+        pass
+
+    if scale is None:
+        print(&#39;WARNING: No scale specified for this boundary condition.  Using default of 1.0...&#39;)
+        scale = 1.0
+
+
+    if nset is not None:
+        self.bcs[step][keywd].append([&#39;nodeset&#39;,nset,dof,lc,scale])
+
+    if nodeid is not None:
+        if isinstance(nodeid, list):
+            for n in nodeid:
+                self.bcs[step][keywd].append([&#39;node&#39;,str(n),dof,lc,scale])
+        else:
+            self.bcs[step][keywd].append([&#39;node&#39;,str(nodeid),dof,lc,scale])</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul>
+<li><a href="#todo">TODO</a></li>
+</ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="interFEBio" href="index.html">interFEBio</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="interFEBio.Boundary.Boundary" href="#interFEBio.Boundary.Boundary">Boundary</a></code></h4>
+<ul class="">
+<li><code><a title="interFEBio.Boundary.Boundary.addContact" href="#interFEBio.Boundary.Boundary.addContact">addContact</a></code></li>
+<li><code><a title="interFEBio.Boundary.Boundary.addFixed" href="#interFEBio.Boundary.Boundary.addFixed">addFixed</a></code></li>
+<li><code><a title="interFEBio.Boundary.Boundary.addPrescribed" href="#interFEBio.Boundary.Boundary.addPrescribed">addPrescribed</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

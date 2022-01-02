@@ -1,0 +1,2104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>interFEBio.xplt API documentation</title>
+<meta name="description" content="Module to read xply binary data resulting from a FEBio analysis.
+Is based on the binary database Documentation and some recent source code (storage …" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>interFEBio.xplt</code></h1>
+</header>
+<section id="section-intro">
+<p>Module to read xply binary data resulting from a FEBio analysis.
+Is based on the binary database Documentation and some recent source code (storage formats):</p>
+<p><a href="https://github.com/febiosoftware/FEBio/blob/master/Documentation/FEBioBinaryDatabaseSpecification.pdf">FEBioBinaryDatabaseSpecification.pdf</a></p>
+<p><a href="https://github.com/febiosoftware/FEBio/blob/f9a3cdd74d1864ec0886decc918ef8e805344fbc/FECore/fecore_enum.h">fecore_enum</a></p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">&#34;&#34;&#34;
+Module to read xply binary data resulting from a FEBio analysis.
+Is based on the binary database Documentation and some recent source code (storage formats):
+
+[FEBioBinaryDatabaseSpecification.pdf](https://github.com/febiosoftware/FEBio/blob/master/Documentation/FEBioBinaryDatabaseSpecification.pdf)
+
+[fecore_enum](https://github.com/febiosoftware/FEBio/blob/f9a3cdd74d1864ec0886decc918ef8e805344fbc/FECore/fecore_enum.h)
+&#34;&#34;&#34;
+
+import struct
+import numpy as np
+from numpy import *
+import sys
+import pdb
+
+
+
+
+class xplt:
+    &#34;&#34;&#34;
+    Class that reads a binary file of FEBio.
+
+    Args:
+    ----------
+
+        filename(str): Name of the xplt binary with extension.
+
+    Variables:
+    ----------
+
+        self.dictionary :   A dictionary containing the results dictionary in the xplt file.
+                            Resume the result variables and type of data for each one.
+
+        self.results:       Numpy array of results in the following format:
+                            self.results[time step, region, element/node/surface, component (voigt, starting from 0)]
+    &#34;&#34;&#34;
+    def __init__(self,filename):
+        self.rigidDictionary = dict()
+        self.time = []
+        self.reader = _binaryReader(filename)
+        self.readMode = &#39;&#39;
+        self._read_xplt(filename)
+
+
+
+    def _readMesh(self):
+        self.mesh = mesh() #Initialize mesh object.
+        elemType = {
+            0 : &#39;HEX8&#39;,
+            1 : &#39;PENTA6&#39;,
+            2 : &#39;TET4&#39;,
+            3 : &#39;QUAD4&#39;,
+            4 : &#39;TRI3&#39;,
+            5 : &#39;TRUSS2&#39;,
+            6 : &#39;HEX20&#39;,
+            7 : &#39;TET10&#39;,
+            8 : &#39;TET15&#39;,
+            9 : &#39;HEX27&#39;
+            }
+
+        nodesPerElement = {
+            &#39;HEX8&#39;   : 8,
+            &#39;PENTA6&#39; : 6,
+            &#39;TET4&#39;   : 4,
+            &#39;QUAD4&#39;  : 4,
+            &#39;TRI3&#39;   : 3,
+            &#39;TRUSS2&#39; : 2,
+            &#39;HEX20&#39; :20,
+            &#39;TET10&#39; : 10,
+            &#39;TET15&#39; : 15,
+            &#39;HEX27&#39; : 27
+        }
+
+        a = self.reader.search_block(&#39;PLT_MESH&#39;)
+        a = self.reader.search_block(&#39;PLT_NODE_SECTION&#39;)
+        a = self.reader.search_block(&#39;PLT_NODE_HEADER&#39;)
+        a = self.reader.search_block(&#39;PLT_NODE_SIZE&#39;)
+        nodeSize = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+        a = self.reader.search_block(&#39;PLT_NODE_DIM&#39;)
+        nodeDim = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+        a = self.reader.search_block(&#39;PLT_NODE_COORDS&#39;)
+        node_coords = zeros([nodeSize, nodeDim])
+        #node_coords = zeros([1, nodeDim])
+        for i in range(nodeSize):
+            id = struct.unpack(&#39;I&#39;, self.reader.read())[0] #Is necessary to store this?
+            for j in range(nodeDim):
+                node_coords[i, j] = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        self.mesh.nodes = node_coords
+
+        a = self.reader.search_block(&#39;PLT_DOMAIN_SECTION&#39;)
+
+        # NOTE: index starts from 0 (in .feb file, index starts from 1)
+        idomain = 1
+        while self.reader.check_block(&#39;PLT_DOMAIN&#39;):
+            a = self.reader.search_block(&#39;PLT_DOMAIN&#39;)
+
+            a = self.reader.search_block(&#39;PLT_DOMAIN_HDR&#39;)
+
+            a = self.reader.search_block(&#39;PLT_DOM_ELEM_TYPE&#39;)
+            dom_elem_type = int(struct.unpack(&#39;I&#39;, self.reader.read())[0])
+
+            a = self.reader.search_block(&#39;PLT_DOM_PART_ID&#39;)
+            dom_part_id = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+
+            a = self.reader.search_block(&#39;PLT_DOM_ELEMS&#39;)
+            dom_n_elems = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+
+            #
+            # a = self.reader.search_block(&#39;PLT_DOM_NAME&#39;)
+            # dom_names = (self.reader.read(a).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;))
+            # print(dom_names)
+            #print(dom_elem_type,dom_part_id,dom_n_elems)
+
+            elemDict = dict()
+            #domainDict[&#39;elements&#39;] = dict()
+            a = self.reader.search_block(&#39;PLT_DOM_ELEM_LIST&#39;)
+            #print(dom_elem_type,dom_mat_ids,dom_n_elems)
+            ne = nodesPerElement[elemType[dom_elem_type]]
+            ##print(ne)
+
+            #elements = dict()
+            while self.reader.check_block(&#39;PLT_ELEMENT&#39;):
+                a = self.reader.search_block(&#39;PLT_ELEMENT&#39;, print_tag=0)
+                element = zeros(ne + 1, dtype=int)
+                for j in range(ne + 1):
+                    element[j] = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                elemDict[element[0]] = element[1:]
+                #elements.append(element)#[1:]
+            #domainDict[&#39;elements&#39;] = elements
+            #dom_elements.append(elements)
+            if(dom_part_id in self.mesh.domain.keys()):
+                #print(&#34;TRUE&#34;)
+                self.mesh.domain[dom_part_id][&#39;elements&#39;].update(elemDict)
+                self.mesh.domain[dom_part_id][&#39;nElems&#39;] = dom_n_elems+self.mesh.domain[dom_part_id][&#39;nElems&#39;]
+            else:
+                domainDict = {&#39;elemType&#39; : elemType[dom_elem_type], &#39;partID&#39; : dom_part_id, &#39;nElems&#39; : dom_n_elems, &#39;elements&#39; : elemDict}
+                #keyName = list(self.mesh.parts.keys())[list(self.mesh.parts.values()).index(dom_part_id)]
+                self.mesh.domain[dom_part_id] = domainDict
+            idomain+=1
+            #self.mesh.elements.append(domainDict)
+
+
+        if self.reader.search_block(&#39;PLT_SURFACE_SECTION&#39;) &gt; 0:
+            surface_ids = []
+            surface_faces = []  # number of faces
+            surface_names = []
+            faces = []
+            face_ids = []
+            face_max_facet_nodes = []
+            while self.reader.check_block(&#39;PLT_SURFACE&#39;):
+                a = self.reader.search_block(&#39;PLT_SURFACE&#39;)
+
+                a = self.reader.search_block(&#39;PLT_SURFACE_HDR&#39;)
+
+                a = self.reader.search_block(&#39;PLT_SURFACE_ID&#39;)
+                surface_ids = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+
+                # number of facets
+                a = self.reader.search_block(&#39;PLT_SURFACE_FACES&#39;)
+                surface_faces = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+
+                a = self.reader.search_block(&#39;PLT_SURFACE_NAME&#39;)
+                # surface name length is specified just above
+                surface_names = (self.reader.read(a).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[-1])
+
+                a = self.reader.search_block(&#39;PLT_SURFACE_MAX_FACET_NODES&#39;)
+                face_max_facet_nodes = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+                if (self.reader.check_block(&#39;PLT_FACE_LIST&#39;) == 0):
+                    continue
+                else:
+                    a = self.reader.search_block(&#39;PLT_FACE_LIST&#39;)
+                facesDict = dict()
+                while self.reader.check_block(&#39;PLT_FACE&#39;):
+                    a = self.reader.search_block(&#39;PLT_FACE&#39;)
+                    cur_cur = self.reader.file.tell()
+
+                    face = zeros(face_max_facet_nodes, dtype=int)
+                    face_ids = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+
+                    # skip (probably specifing the surface element type here)
+                    self.reader.file.seek(4, 1)
+                    # tri3 element
+
+                    for j in range(face_max_facet_nodes):
+                        face[j] = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                    facesDict[face_ids] = face
+                    #faces = (face)
+                    # skip junk
+                    self.reader.file.seek(cur_cur + a, 0)
+                self.mesh.surface[surface_ids] = {&#39;name&#39; : surface_names,
+                                                    &#39;nFaces&#39; : surface_faces,
+                                                    &#39;nNodesPerFacet&#39; : face_max_facet_nodes,
+                                                    &#39;faces&#39; : facesDict
+                                                    }
+                #print(surface_names)
+
+
+        if self.reader.search_block(&#39;PLT_NODESET_SECTION&#39;) &gt; 0:
+
+            nodeset_ids = []
+            nodeset_nodes = []  # number of faces
+            nodeset_names = []
+            nodeset = []
+            #face_ids = []
+            while self.reader.check_block(&#39;PLT_NODESET&#39;):
+                a = self.reader.search_block(&#39;PLT_NODESET&#39;)
+
+                a = self.reader.search_block(&#39;PLT_NODESET_HDR&#39;)
+
+                a = self.reader.search_block(&#39;PLT_NODESET_ID&#39;)
+                nodeset_ids = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+                # number of facets
+                a = self.reader.search_block(&#39;PLT_NODESET_SIZE&#39;)
+                nodeset_nodes = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+                a = self.reader.search_block(&#39;PLT_NODESET_NAME&#39;)
+                # surface name length is specified just above
+                nodeset_names = (self.reader.read(a).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[-1])
+
+
+
+                if (self.reader.check_block(&#39;PLT_NODESET_LIST&#39;) == 0):
+                    continue
+                else:
+                    a = self.reader.search_block(&#39;PLT_NODESET_LIST&#39;)
+                    nodes = []
+                    for j in range(nodeset_nodes):
+                        #&#34;element[j] = struct.unpack(&#39;I&#39;, f.read(4))[0]
+                        nodes.append(struct.unpack(&#39;I&#39;, self.reader.read())[0])
+                    #elements.append(element)
+                self.mesh.nodeset[nodeset_ids] = {
+                                                    &#39;name&#39; : nodeset_names,
+                                                    &#39;nodeNumber&#39; : nodeset_nodes,
+                                                    &#39;nodes&#39; : nodes
+                                                    }
+
+    def _readParts(self):
+        a = self.reader.search_block(&#39;PLT_PARTS_SECTION&#39;)
+        while self.reader.check_block(&#39;PLT_PART&#39;):
+            a = self.reader.search_block(&#39;PLT_PART&#39;)
+            a = self.reader.search_block(&#39;PLT_PART_ID&#39;)
+            partID = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+            a = self.reader.search_block(&#39;PLT_PART_NAME&#39;)
+            partName = (self.reader.read(a).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[0])
+            #print(partID,partName)
+            self.mesh.parts[partName] = partID
+
+        #print(self.mesh.parts)
+
+    def _readDict(self):
+
+        self.itemType = {0 : &#39;FLOAT&#39;, 1: &#39;VEC3F&#39;, 2 : &#39;MAT3FS&#39;, 3 : &#39;MAT3FD&#39;, 4 : &#39;TENS4FS&#39;, 5 : &#39;MAT3F&#39;}
+        #https://github.com/febiosoftware/FEBio/blob/master/Documentation/FEBioBinaryDatabaseSpecification.pdf
+        self.itemStorageFmt = {0 : &#39;NODE&#39;, 1: &#39;ITEM&#39;, 2 : &#39;MULT&#39;, 3 : &#39;REGION&#39;, 4 : &#39;MATPOINTS&#39;}
+        #https://github.com/febiosoftware/FEBio/blob/f9a3cdd74d1864ec0886decc918ef8e805344fbc/FECore/fecore_enum.h
+        self.dictionary = dict()
+        self.reader.search_block(&#39;PLT_DICTIONARY&#39;)
+
+        ############### NODAL DICTIONARY ###################
+        a = self.reader.search_block(&#39;PLT_DIC_NODAL&#39;)
+        while self.reader.check_block(&#39;PLT_DIC_ITEM&#39;):
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM&#39;)
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_TYPE&#39;)
+            item_types = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_FMT&#39;)
+            item_formats = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_NAME&#39;)
+            item_names = (self.reader.read(64).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[0])
+            self.dictionary[item_names] = {&#39;type&#39; : self.itemType[item_types], &#39;format&#39; : self.itemStorageFmt[item_formats]}
+        ############### NODAL DICTIONARY ###################
+
+        ############### DOMAIN DICTIONARY ###################
+        a = self.reader.search_block(&#39;PLT_DIC_DOMAIN&#39;)
+        while self.reader.check_block(&#39;PLT_DIC_ITEM&#39;):
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM&#39;)
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_TYPE&#39;)
+            item_types = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_FMT&#39;)
+            item_formats = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+            #print(item_formats,item_types)
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_NAME&#39;)
+            item_names = (self.reader.read(64).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[0])
+            self.dictionary[item_names] = {&#39;type&#39; : self.itemType[item_types], &#39;format&#39; : self.itemStorageFmt[item_formats]}
+        ############### DOMAIN DICTIONARY ###################
+
+        ############### SURFACE DICTIONARY ###################
+        a = self.reader.search_block(&#39;PLT_DIC_SURFACE&#39;)
+        while self.reader.check_block(&#39;PLT_DIC_ITEM&#39;):
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM&#39;)
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_TYPE&#39;)
+            item_types = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_FMT&#39;)
+            item_formats = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_NAME&#39;)
+            item_names = (self.reader.read(64).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[0])
+            self.dictionary[item_names] = {&#39;type&#39; : self.itemType[item_types], &#39;format&#39; : self.itemStorageFmt[item_formats]}
+        ############### SURFACE DICTIONARY ###################
+
+        self.results = dict()
+
+        for key in self.dictionary.keys():
+            #self.results[key] = np.array([])
+            self.results[key] = []
+
+        self.dictNodal = (sum(np.fromiter((1 for v in self.dictionary.values() if v[&#39;format&#39;] == &#39;NODE&#39;) ,dtype=int)))
+        self.dictItem = (sum(np.fromiter((1 for v in self.dictionary.values() if v[&#39;format&#39;] == &#39;ITEM&#39;) ,dtype=int)))
+
+
+
+    def _readObjState(self):
+        a = self.reader.search_block(&#39;PLT_OBJECTS_SECTION&#39;)
+        a = self.reader.search_block(&#39;PLT_POINT_OBJECT&#39;)
+        a = self.reader.search_block(&#39;PLT_OBJECT_ID&#39;)
+        objID = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+
+        #
+        a = self.reader.search_block(&#39;PLT_OBJECT_NAME&#39;)
+        #print(a)
+        objName = (self.reader.read(a).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#34;\x00&#34;)[-1])
+
+        a = self.reader.search_block(&#39;PLT_OBJECT_TAG&#39;)
+        objTAG = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+
+        a = self.reader.search_block(&#39;PLT_OBJECT_POS&#39;)
+        objPOSX = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        objPOSY = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        objPOSZ = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+
+
+        a = self.reader.search_block(&#39;PLT_OBJECT_ROT&#39;)
+        objROTX = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        objROTY = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        objROTZ = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        objROTW = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+
+        a = self.reader.search_block(&#39;PLT_OBJECT_DATA&#39;)
+        a = self.reader.search_block(&#39;PLT_DIC_ITEM_TYPE&#39;)
+        itemType = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+        a = self.reader.search_block(&#39;PLT_DIC_ITEM_FMT&#39;)
+        itemFmt = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+
+        self.rigidDictionary[objID] = { &#39;name&#39; : objName,
+                                        &#39;tag&#39; : objTAG,
+                                        &#39;pos&#39; : [objPOSX,objPOSY,objPOSZ],
+                                        &#39;rot&#39; : [objROTX,objROTY,objROTZ,objROTW],
+                                        &#39;itemType&#39; : itemType,
+                                        &#39;itemFmt&#39; : itemFmt
+                                    }
+
+    def _skipState(self):
+        a = self.reader.seek_block(&#39;PLT_STATE&#39;)
+        self.reader.read(a)
+
+    def readSteps(self,stepList):
+        &#34;&#34;&#34;
+        Read a list of time steps.
+
+        Variables:
+        ----------
+
+            stepList(list): List of integers. Time steps to be read.
+
+        TODO:
+        ----------
+
+            Fix this function. The last step of the list can&#39;t be readed.
+
+        &#34;&#34;&#34;
+        if(self.readMode == &#39;readAllStates&#39;):
+            sys.exit(&#34;readSteps[list] is not compatible with readAllStates function&#34;)
+
+        for i in range(len(stepList)):
+            if(i == 0):
+                stepDiff = stepList[i]
+            else:
+                stepDiff = stepList[i] - stepList[i-1]
+            print(stepDiff)
+            if(i&gt;0):
+                stepDiff-=1
+
+            for skip in range(stepDiff):
+                try:
+                    self._skipState()
+                except:
+                    sys.exit(&#34;*******************************\n\n&#34;+&#34;Error: No more steps to skip!!!\n\n&#34;+&#34;*******************************&#34;)
+            self._readState()
+        self.readMode = &#39;readSteps&#39;
+            #try:
+            #    self.skipState()
+            #except:
+            #    sys.error(&#34;No more states to skip&#34;)
+        #self.readState()
+        self._clearDict()
+
+
+    def _readState(self):
+
+        var = 0
+
+        dataDim = {&#39;FLOAT&#39; : 1, &#39;VEC3F&#39; : 3, &#39;MAT3FD&#39; : 3, &#39;MAT3FS&#39; : 6, &#39;MAT3F&#39; : 9, &#39;TENS4FS&#39; : 21}
+
+        # # now extract the information from the desired state
+        a = self.reader.search_block(&#39;PLT_STATE&#39;)
+        a = self.reader.search_block(&#39;PLT_STATE_HEADER&#39;)
+        # a = self.reader.search_block(&#39;PLT_STATE_HDR_ID&#39;)
+        # stateID = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+        # print(stateID)
+
+        a = self.reader.search_block(&#39;PLT_STATE_HDR_TIME&#39;)
+        stateTime = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+
+
+        a = self.reader.search_block(&#39;PLT_STATE_STATUS&#39;)
+        stateStatus = struct.unpack(&#39;I&#39;, self.reader.read())[0] #What is state status?
+        #print(&#34;STATSTATUS&#34;,stateStatus)
+        if(stateStatus != 0):
+            return 1
+        self.time.append(stateTime)
+        n_node_data = 0
+        item_def_doms = []
+        a = self.reader.search_block(&#39;PLT_STATE_DATA&#39;)
+        a = self.reader.search_block(&#39;PLT_NODE_DATA&#39;)
+        while self.reader.check_block(&#39;PLT_STATE_VARIABLE&#39;):
+            a = self.reader.search_block(&#39;PLT_STATE_VARIABLE&#39;)
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_ID&#39;)
+            varID = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+            #print(varID)
+
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_DATA&#39;)
+
+            a_end = self.reader.file.tell() + a
+
+            #dictKey = list(self.dictionary.keys())[varID-1]
+            dictKey = list(self.dictionary.keys())[var]
+            #print(dictKey)
+            varDataDim = (dataDim[self.dictionary[dictKey][&#39;type&#39;]])
+            def_doms = []
+            #domainData = np.array([])
+            domainData = []
+            while(self.reader.file.tell() &lt; a_end):
+                dom_num = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                data_size = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                n_data = int(data_size / varDataDim / 4.0)
+                def_doms.append(dom_num - 1)
+                #print(&#34;dom num:&#34;,dom_num)
+
+                #print(dom_num,data_size,n_data)
+                #print(&#39;number of node data for domain %s = %d&#39; % (dom_num, n_data))
+                if n_data &gt; 0:
+                    elem_data = zeros([n_data, varDataDim])
+                    for i in range(0, n_data):
+                        for j in range(0, varDataDim):
+                            elem_data[i, j] = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+                domainData.append(elem_data)
+                #domainData = np.append(domainData,elem_data)
+            self.results[dictKey].append(domainData)
+            var+=1
+            #self.results[dictKey] = np.append(self.results[dictKey],domainData)
+                #print(elem_data)
+
+
+            item_def_doms.append(def_doms)
+        #print(item_def_doms)
+
+        a = self.reader.search_block(&#39;PLT_ELEMENT_DATA&#39;)
+        while self.reader.check_block(&#39;PLT_STATE_VARIABLE&#39;):
+            a = self.reader.search_block(&#39;PLT_STATE_VARIABLE&#39;)
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_ID&#39;)
+            varID = struct.unpack(&#39;I&#39;, self.reader.read())[0]+self.dictNodal
+            #print(varID)
+
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_DATA&#39;)
+
+            a_end = self.reader.file.tell() + a
+
+            #dictKey = list(self.dictionary.keys())[varID-1]
+            dictKey = list(self.dictionary.keys())[var]
+            #print(dictKey)
+            varDataDim = (dataDim[self.dictionary[dictKey][&#39;type&#39;]])
+            def_doms = []
+            domainData = []
+            #domainData = np.array([])
+            while(self.reader.file.tell() &lt; a_end):
+                dom_num = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                data_size = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                n_data = int(data_size / varDataDim / 4.0)
+                def_doms.append(dom_num - 1)
+                #print(&#34;dom num:&#34;,dom_num)
+
+                #print(dom_num,data_size,n_data)
+                #print(&#39;number of node data for domain %s = %d&#39; % (dom_num, n_data))
+                if n_data &gt; 0:
+                    elem_data = zeros([n_data, varDataDim])
+                    for i in range(0, n_data):
+                        for j in range(0, varDataDim):
+                            elem_data[i, j] = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+                domainData.append(elem_data)
+                #domainData = np.append(domainData,elem_data)
+                #print(elem_data)
+
+            item_def_doms.append(def_doms)
+            self.results[dictKey].append(domainData)
+            var+=1
+            #self.results[dictKey] = np.append(self.results[dictKey],domainData)
+
+
+        a = self.reader.search_block(&#39;PLT_FACE_DATA&#39;)
+        while self.reader.check_block(&#39;PLT_STATE_VARIABLE&#39;):
+            a = self.reader.search_block(&#39;PLT_STATE_VARIABLE&#39;)
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_ID&#39;)
+            varID = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+            #print(varID,self.dictNodal,self.dictItem)
+
+
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_DATA&#39;)
+
+            a_end = self.reader.file.tell() + a
+
+            #dictKey = list(self.dictionary.keys())[varID-1]
+            dictKey = list(self.dictionary.keys())[var]
+            #print(dictKey)
+            varDataDim = (dataDim[self.dictionary[dictKey][&#39;type&#39;]])
+            #print(varDataDim)
+            def_doms = []
+            domainData = []
+            #domainData = np.array([])
+            while(self.reader.file.tell() &lt; a_end):
+                dom_num = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                data_size = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                n_data = int(data_size / varDataDim / 4.0)
+                def_doms.append(dom_num - 1)
+                #print(&#34;dom num:&#34;,dom_num)
+
+                #print(dom_num,data_size,n_data)
+                #print(&#39;number of node data for domain %s = %d&#39; % (dom_num, n_data))
+                if n_data &gt; 0:
+                    elem_data = zeros([n_data, varDataDim])
+                    for i in range(0, n_data):
+                        for j in range(0, varDataDim):
+                            elem_data[i, j] = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+                #domainData = np.append(domainData,elem_data)
+                domainData.append(elem_data)
+                #print(domainData)
+                #domainData = np.array(domainData)
+                #print(elem_data)
+
+            item_def_doms.append(def_doms)
+
+            self.results[dictKey].append(domainData)
+            var+=1
+            #self.results[dictKey] = np.append(self.results[dictKey],domainData)
+        return 0
+
+
+    def readAllStates(self):
+        &#34;&#34;&#34;
+        Read all the steps of the xplt file.
+        &#34;&#34;&#34;
+        if(self.readMode) == &#39;readSteps&#39;:
+            sys.exit(&#34;readAllStates is not compatible with readSteps[list]!&#34;)
+        i=1
+        while (1):
+            try:
+                #print(i)
+
+                status = self._readState()
+                #print(i,status)
+                i+=1
+                if(status != 0):
+                    break
+            except:
+                #print(&#34;FAILEDD&#34;)
+                break
+        self.readMode = &#39;readAllStates&#39;
+        self._clearDict()
+
+    def _clearDict(self):
+        for key in self.results:
+            self.results[key] = np.array(self.results[key])
+            #print(self.results[key].shape)
+
+    def _read_xplt(self,filename):
+        #if(int(&#39;0x0031&#39;, base=16) == struct.unpack(&#39;I&#39;, self.reader.read())[0]):
+            #print(&#39;Correct FEBio format&#39;)
+        #else:
+            #sys.exit(&#34;The provided file is not a valid xplt file&#34;)
+        self.reader.search_block(&#39;PLT_ROOT&#39;)
+        self.reader.search_block(&#39;PLT_HEADER&#39;)
+        self.reader.search_block(&#39;PLT_HDR_VERSION&#39;)
+        self.version = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+
+        self.reader.search_block(&#39;PLT_HDR_COMPRESSION&#39;)
+        self.compression = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+
+        self._readDict()
+        self._readMesh()
+        self._readParts()
+
+class _binaryReader:
+    def __init__(self,filename):
+
+        self.tags = {
+            &#39;PLT_VERSION&#39; : &#39;0x0031&#39;,
+            &#39;PLT_ROOT&#39; : &#39;0x01000000&#39; ,
+            &#39;PLT_HEADER&#39; : &#39;0x01010000&#39; ,
+            &#39;PLT_HDR_VERSION&#39; : &#39;0x01010001&#39; ,
+            #// PLT_HDR_NODES&#39; : &#39;0x01010002&#39; ,
+            #// PLT_HDR_MAX_FACET_NODES&#39; : &#39;0x01010003&#39; ,       #// removed (redefined in seach SURFACE section)
+            &#39;PLT_HDR_COMPRESSION&#39; : &#39;0x01010004&#39; ,
+            &#39;PLT_HDR_AUTHOR&#39; : &#39;0x01010005&#39; ,#  // new in 2.0
+            &#39;PLT_HDR_SOFTWARE&#39; : &#39;0x01010006&#39; , #// new in 2.0
+            &#39;PLT_DICTIONARY&#39; : &#39;0x01020000&#39; ,
+            &#39;PLT_DIC_ITEM&#39; : &#39;0x01020001&#39; ,
+            &#39;PLT_DIC_ITEM_TYPE&#39; : &#39;0x01020002&#39; ,
+            &#39;PLT_DIC_ITEM_FMT&#39; : &#39;0x01020003&#39; ,
+            &#39;PLT_DIC_ITEM_NAME&#39; : &#39;0x01020004&#39; ,
+            &#39;PLT_DIC_ITEM_ARRAYSIZE&#39; : &#39;0x01020005&#39; ,   #// added in version 0x05
+            &#39;PLT_DIC_ITEM_ARRAYNAME&#39; : &#39;0x01020006&#39; ,   #// added in version 0x05
+            &#39;PLT_DIC_GLOBAL&#39; : &#39;0x01021000&#39; ,
+            #// PLT_DIC_MATERIAL        &#39; : &#39;0x01022000&#39; ,#     // this was removed
+            &#39;PLT_DIC_NODAL&#39; : &#39;0x01023000&#39; ,
+            &#39;PLT_DIC_DOMAIN&#39; : &#39;0x01024000&#39; ,
+            &#39;PLT_DIC_SURFACE&#39; : &#39;0x01025000&#39; ,
+            #//PLT_MATERIALS    &#39; : &#39;0x01030000&#39; ,      #       // This was removed
+            #// PLT_MATERIAL&#39; : &#39;0x01030001&#39; ,
+            ##//        PLT_MAT_ID      &#39; : &#39;0x01030002&#39; ,
+            #// PLT_MAT_NAME&#39; : &#39;0x01030003&#39; ,
+            &#39;PLT_MESH&#39; : &#39;0x01040000&#39; , #       // this was PLT_GEOMETRY
+            &#39;PLT_NODE_SECTION&#39; : &#39;0x01041000&#39; ,
+            &#39;PLT_NODE_HEADER&#39; : &#39;0x01041100&#39; ,  #       // new in 2.0
+            &#39;PLT_NODE_SIZE&#39; : &#39;0x01041101&#39; ,    #       // new in 2.0
+            &#39;PLT_NODE_DIM&#39; : &#39;0x01041102&#39; ,     #       // new in 2.0
+            &#39;PLT_NODE_NAME&#39; : &#39;0x01041103&#39; ,    #       // new in 2.0
+            &#39;PLT_NODE_COORDS&#39; : &#39;0x01041200&#39; ,  #       // new in 2.0
+            &#39;PLT_DOMAIN_SECTION&#39; : &#39;0x01042000&#39; ,
+            &#39;PLT_DOMAIN&#39; : &#39;0x01042100&#39; ,
+            &#39;PLT_DOMAIN_HDR&#39; : &#39;0x01042101&#39; ,
+            &#39;PLT_DOM_ELEM_TYPE&#39; : &#39;0x01042102&#39; ,
+            &#39;PLT_DOM_PART_ID&#39; : &#39;0x01042103&#39; ,#// this was PLT_DOM_MAT_ID
+            &#39;PLT_DOM_ELEMS&#39; : &#39;0x01032104&#39; ,
+            &#39;PLT_DOM_NAME&#39; : &#39;0x01032105&#39; ,
+            &#39;PLT_DOM_ELEM_LIST&#39; : &#39;0x01042200&#39; ,
+            &#39;PLT_ELEMENT&#39; : &#39;0x01042201&#39; ,
+            &#39;PLT_SURFACE_SECTION&#39; : &#39;0x01043000&#39; ,
+            &#39;PLT_SURFACE&#39; : &#39;0x01043100&#39; ,
+            &#39;PLT_SURFACE_HDR&#39; : &#39;0x01043101&#39; ,
+            &#39;PLT_SURFACE_ID&#39; : &#39;0x01043102&#39; ,
+            &#39;PLT_SURFACE_FACES&#39; : &#39;0x01043103&#39; ,
+            &#39;PLT_SURFACE_NAME&#39; : &#39;0x01043104&#39; ,
+            &#39;PLT_SURFACE_MAX_FACET_NODES&#39; : &#39;0x01043105&#39; ,      #// new in 2.0 (max number of nodes per facet)
+            &#39;PLT_FACE_LIST&#39; : &#39;0x01043200&#39; ,
+            &#39;PLT_FACE&#39; : &#39;0x01043201&#39; ,
+            &#39;PLT_NODESET_SECTION&#39; : &#39;0x01044000&#39; ,
+            &#39;PLT_NODESET&#39; : &#39;0x01044100&#39; ,
+            &#39;PLT_NODESET_HDR&#39; : &#39;0x01044101&#39; ,
+            &#39;PLT_NODESET_ID&#39; : &#39;0x01044102&#39; ,
+            &#39;PLT_NODESET_NAME&#39; : &#39;0x01044103&#39; ,
+            &#39;PLT_NODESET_SIZE&#39; : &#39;0x01044104&#39; ,
+            &#39;PLT_NODESET_LIST&#39; : &#39;0x01044200&#39; ,
+            &#39;PLT_PARTS_SECTION&#39; : &#39;0x01045000&#39; ,#// new in 2.0
+            &#39;PLT_PART&#39; : &#39;0x01045100&#39; ,
+            &#39;PLT_PART_ID&#39; : &#39;0x01045101&#39; ,
+            &#39;PLT_PART_NAME&#39; : &#39;0x01045102&#39; ,
+            #   // plot objects were added in 3.0
+            &#39;PLT_OBJECTS_SECTION&#39; : &#39;0x01050000&#39; ,
+            &#39;PLT_OBJECT_ID&#39; : &#39;0x01050001&#39; ,
+            &#39;PLT_OBJECT_NAME&#39; : &#39;0x01050002&#39; ,
+            &#39;PLT_OBJECT_TAG&#39; : &#39;0x01050003&#39; ,
+            &#39;PLT_OBJECT_POS&#39; : &#39;0x01050004&#39; ,
+            &#39;PLT_OBJECT_ROT&#39; : &#39;0x01050005&#39; ,
+            &#39;PLT_OBJECT_DATA&#39; : &#39;0x01050006&#39; ,
+            &#39;PLT_POINT_OBJECT&#39; : &#39;0x01051000&#39; ,
+            &#39;PLT_POINT_COORD&#39; : &#39;0x01051001&#39; ,
+            &#39;PLT_LINE_OBJECT&#39; : &#39;0x01052000&#39; ,
+            &#39;PLT_LINE_COORDS&#39; : &#39;0x01052001&#39; ,
+            &#39;PLT_STATE&#39; : &#39;0x02000000&#39; ,
+            &#39;PLT_STATE_HEADER&#39; : &#39;0x02010000&#39; ,
+            &#39;PLT_STATE_HDR_ID&#39; : &#39;0x02010001&#39; ,
+            &#39;PLT_STATE_HDR_TIME&#39; : &#39;0x02010002&#39; ,
+            &#39;PLT_STATE_STATUS&#39; : &#39;0x02010003&#39; , #// new in 3.1
+            &#39;PLT_STATE_DATA&#39; : &#39;0x02020000&#39; ,
+            &#39;PLT_STATE_VARIABLE&#39; : &#39;0x02020001&#39; ,
+            &#39;PLT_STATE_VAR_ID&#39; : &#39;0x02020002&#39; ,
+            &#39;PLT_STATE_VAR_DATA&#39; : &#39;0x02020003&#39; ,
+            &#39;PLT_GLOBAL_DATA&#39; : &#39;0x02020100&#39; ,
+            #//PLT_MATERIAL_DATA&#39; : &#39;0x02020200&#39; ,// this was removed
+            &#39;PLT_NODE_DATA&#39; : &#39;0x02020300&#39; ,
+            &#39;PLT_ELEMENT_DATA&#39; : &#39;0x02020400&#39; ,
+            &#39;PLT_FACE_DATA&#39; : &#39;0x02020500&#39; ,
+            &#39;PLT_MESH_STATE&#39; : &#39;0x02030000&#39; ,
+            &#39;PLT_ELEMENT_STATE&#39; : &#39;0x02030001&#39; ,
+            &#39;PLT_OBJECTS_STATE&#39; : &#39;0x02040000&#39;
+            }
+
+        self.invTags = {v: k for k, v in self.tags.items()}
+        self.file = open(filename, &#39;rb&#39;)
+        self.file.seek(0, 2)
+        self.filesize = self.file.tell() #Get file size
+        self.file.seek(0, 0)
+
+    def read(self,bytes=4):
+        return self.file.read(bytes)
+
+    def search_block(self, BLOCK_TAG, max_depth=15, cur_depth=0,verbose=0, inv_TAGS=0, print_tag=0):
+
+        if cur_depth == 0:
+            ini_pos = self.file.tell()
+        if cur_depth &gt; max_depth:
+            if verbose == 1:
+                print(&#39;Max iteration reached: Cannot find &#39;,BLOCK_TAG)
+            return -1
+        buf = self.file.read(4)
+        if buf == b&#39;&#39;:
+            if verbose == 1:
+                print(&#39;EOF: Cannot find &#39;,BLOCK_TAG)
+            return -1
+        else:
+            cur_id = struct.unpack(&#39;I&#39;, buf)[0]
+        a = struct.unpack(&#39;I&#39;, self.file.read(4))[0]  # size of the block
+        if verbose == 1:
+            cur_id_str = &#39;0x&#39; + &#39;{0:08x}&#39;.format(cur_id)
+            # print &#39;cur_ID: &#39; + cur_id_str
+            try:
+                print(&#39;cur_tag:&#39;, self.invTags[cur_id_str])
+                #print(&#39;size:&#39;, a)
+            except:
+                pass
+        if(int(self.tags[BLOCK_TAG], base=16) == cur_id):
+            if print_tag == 1:
+                print(BLOCK_TAG)
+            return a
+        else:
+            self.file.seek(a, 1)
+            d = self.search_block(BLOCK_TAG, cur_depth=cur_depth + 1,verbose=verbose,print_tag=print_tag)
+            if d == -1:
+                # put the cursor position back
+                if cur_depth == 0:
+                    self.file.seek(ini_pos, 0)
+                return -1
+            else:
+                return d
+
+    def check_block(self,BLOCK_TAG, filesize=-1):
+        &#39;&#39;&#39;Check if the BLOCK TAG exists immediately after the file cursor.&#39;&#39;&#39;
+        if filesize &gt; 0:
+            if self.file.tell() + 4 &gt; filesize:
+                print(&#34;EOF reached&#34;)
+                return 0
+        buf = struct.unpack(&#39;I&#39;, self.file.read(4))[0]
+        self.file.seek(-4, 1)
+        if(int(self.tags[BLOCK_TAG], base=16) == buf):
+            return 1
+        return 0
+
+    def seek_block(self,BLOCK_TAG):
+        if(int(self.tags[BLOCK_TAG], base=16) == struct.unpack(&#39;I&#39;, self.file.read(4))[0]):
+            pass
+            #print(&#39;%s&#39; % BLOCK_TAG)
+        a = struct.unpack(&#39;I&#39;, self.file.read(4))  # size of the root section
+        return a[0]
+
+class mesh:
+    &#34;&#34;&#34;
+    Child class inside the xplt main class that allows to access information of the mesh.
+
+    Variables:
+    ----------
+
+        self.domain (dict): Dictionary of domains. the key is the domain ID.
+                            Contains another dictionary with the following keys:
+                                &#39;elemType&#39;  : (str)  Type of element
+                                &#39;partID&#39;    : (int)  Part id (same as domain ID, should be removed)
+                                &#39;nElems&#39;    : (int)  Number of elements in that domain
+                                &#39;elements&#39;  : (dict) Dictionary of elements. The keys are the element number.
+
+        self.nodeset (dict): Dictionary of nodesets. the key is the nodeset ID.
+                             Contains another dictionary with the following keys:
+                                &#39;name&#39;       : (str)  Name of that nodeset
+                                &#39;nodeNumber&#39; : (int)  Number of nodes of the nodeset
+                                &#39;nodes&#39;      : (list) List of nodes
+
+        self.surface (dict): Dictionary of surfaces. the key is the surface ID.
+                             Contains another dictionary with the following keys:
+                                &#39;name&#39;           : (str)  Surface name
+                                &#39;nFaces&#39;         : (int)  Surface number of facets
+                                &#39;nNodesPerFacet&#39; : (int)  Surface nodes per facet
+                                &#39;faces&#39;          : (dict) Dictionary of faces elements.
+                                                          The key is the facet element number.
+                                                          Contain a list of nodes for each facet (size nNodesPerFacet).
+
+    &#34;&#34;&#34;
+    def __init__(self):
+        self.domain = dict()
+        self.nodeset = dict()
+        self.parts = dict()
+        self.surface = dict()
+
+    def listRegions(self):
+        &#34;&#34;&#34;
+        List all the regions of the mesh
+
+        Return:
+        ----------
+                List of region names
+        &#34;&#34;&#34;
+        return [x for x in self.parts.keys()]
+
+    def listSurfaces(self):
+        &#34;&#34;&#34;
+        List all the surface names of the mesh
+
+        Return:
+        ----------
+                List of surface names
+        &#34;&#34;&#34;
+        return [self.surface[x][&#39;name&#39;] for x in self.surface.keys()]
+
+    def listNodesets(self):
+        &#34;&#34;&#34;
+        List all the nodeset names of the mesh
+
+        Return:
+        ----------
+                List of nodeset names
+        &#34;&#34;&#34;
+        return [self.nodeset[x][&#39;name&#39;] for x in self.nodeset.keys()]
+
+    def regionID(self,name):
+        &#34;&#34;&#34;
+        Return the integer ID of a region by its name
+
+        Variables:
+        ----------
+
+            name(str): Name of the region
+
+        Return:
+        ----------
+
+            region ID (int)
+        &#34;&#34;&#34;
+        return self.parts[name]
+
+    def surfaceID(self,name):
+        &#34;&#34;&#34;
+        Return the integer ID of a surface by its name
+
+        Variables:
+        ----------
+
+            name(str): Name of the surface
+
+        Return:
+        ----------
+
+            surface ID (int)
+        &#34;&#34;&#34;
+        for key in self.surface.keys():
+            if(self.surface[key][&#39;name&#39;] == name):
+                return key
+    def nodesetID(self,name):
+        &#34;&#34;&#34;
+        Return the integer ID of a nodeset by its name
+
+        Variables:
+        ----------
+
+            name(str): Name of the nodeset
+
+        Return:
+        ----------
+
+            nodeset ID (int)
+        &#34;&#34;&#34;
+        for key in self.nodeset.keys():
+            if(self.nodeset[key][&#39;name&#39;] == name):
+                return key
+
+    def domainElements(self,domain):
+        &#34;&#34;&#34;
+        Return the elements of a given domain ID.
+
+        Variables:
+        ----------
+
+            domain(int): Name of the region
+
+        Return:
+        ----------
+
+            dictionary of elements in that domain.
+        &#34;&#34;&#34;
+        return self.domain[domain][&#39;elements&#39;]
+
+    def allElements(self):
+        &#34;&#34;&#34;
+        Return a dictionary of all the elements of the mesh.
+
+        Return:
+        ----------
+
+            dictionary of all the elements of the mesh.
+        &#34;&#34;&#34;
+        totalElementDict = dict()
+        for key in self.domain.keys():
+            for elem in self.domain[key][&#39;elements&#39;]:
+                totalElementDict[elem] = self.domain[key][&#39;elements&#39;][elem]
+        return totalElementDict</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="interFEBio.xplt.mesh"><code class="flex name class">
+<span>class <span class="ident">mesh</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Child class inside the xplt main class that allows to access information of the mesh.</p>
+<h2 id="variables">Variables:</h2>
+<pre><code>self.domain (dict): Dictionary of domains. the key is the domain ID.
+                    Contains another dictionary with the following keys:
+                        'elemType'  : (str)  Type of element
+                        'partID'    : (int)  Part id (same as domain ID, should be removed)
+                        'nElems'    : (int)  Number of elements in that domain
+                        'elements'  : (dict) Dictionary of elements. The keys are the element number.
+
+self.nodeset (dict): Dictionary of nodesets. the key is the nodeset ID.
+                     Contains another dictionary with the following keys:
+                        'name'       : (str)  Name of that nodeset
+                        'nodeNumber' : (int)  Number of nodes of the nodeset
+                        'nodes'      : (list) List of nodes
+
+self.surface (dict): Dictionary of surfaces. the key is the surface ID.
+                     Contains another dictionary with the following keys:
+                        'name'           : (str)  Surface name
+                        'nFaces'         : (int)  Surface number of facets
+                        'nNodesPerFacet' : (int)  Surface nodes per facet
+                        'faces'          : (dict) Dictionary of faces elements.
+                                                  The key is the facet element number.
+                                                  Contain a list of nodes for each facet (size nNodesPerFacet).
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class mesh:
+    &#34;&#34;&#34;
+    Child class inside the xplt main class that allows to access information of the mesh.
+
+    Variables:
+    ----------
+
+        self.domain (dict): Dictionary of domains. the key is the domain ID.
+                            Contains another dictionary with the following keys:
+                                &#39;elemType&#39;  : (str)  Type of element
+                                &#39;partID&#39;    : (int)  Part id (same as domain ID, should be removed)
+                                &#39;nElems&#39;    : (int)  Number of elements in that domain
+                                &#39;elements&#39;  : (dict) Dictionary of elements. The keys are the element number.
+
+        self.nodeset (dict): Dictionary of nodesets. the key is the nodeset ID.
+                             Contains another dictionary with the following keys:
+                                &#39;name&#39;       : (str)  Name of that nodeset
+                                &#39;nodeNumber&#39; : (int)  Number of nodes of the nodeset
+                                &#39;nodes&#39;      : (list) List of nodes
+
+        self.surface (dict): Dictionary of surfaces. the key is the surface ID.
+                             Contains another dictionary with the following keys:
+                                &#39;name&#39;           : (str)  Surface name
+                                &#39;nFaces&#39;         : (int)  Surface number of facets
+                                &#39;nNodesPerFacet&#39; : (int)  Surface nodes per facet
+                                &#39;faces&#39;          : (dict) Dictionary of faces elements.
+                                                          The key is the facet element number.
+                                                          Contain a list of nodes for each facet (size nNodesPerFacet).
+
+    &#34;&#34;&#34;
+    def __init__(self):
+        self.domain = dict()
+        self.nodeset = dict()
+        self.parts = dict()
+        self.surface = dict()
+
+    def listRegions(self):
+        &#34;&#34;&#34;
+        List all the regions of the mesh
+
+        Return:
+        ----------
+                List of region names
+        &#34;&#34;&#34;
+        return [x for x in self.parts.keys()]
+
+    def listSurfaces(self):
+        &#34;&#34;&#34;
+        List all the surface names of the mesh
+
+        Return:
+        ----------
+                List of surface names
+        &#34;&#34;&#34;
+        return [self.surface[x][&#39;name&#39;] for x in self.surface.keys()]
+
+    def listNodesets(self):
+        &#34;&#34;&#34;
+        List all the nodeset names of the mesh
+
+        Return:
+        ----------
+                List of nodeset names
+        &#34;&#34;&#34;
+        return [self.nodeset[x][&#39;name&#39;] for x in self.nodeset.keys()]
+
+    def regionID(self,name):
+        &#34;&#34;&#34;
+        Return the integer ID of a region by its name
+
+        Variables:
+        ----------
+
+            name(str): Name of the region
+
+        Return:
+        ----------
+
+            region ID (int)
+        &#34;&#34;&#34;
+        return self.parts[name]
+
+    def surfaceID(self,name):
+        &#34;&#34;&#34;
+        Return the integer ID of a surface by its name
+
+        Variables:
+        ----------
+
+            name(str): Name of the surface
+
+        Return:
+        ----------
+
+            surface ID (int)
+        &#34;&#34;&#34;
+        for key in self.surface.keys():
+            if(self.surface[key][&#39;name&#39;] == name):
+                return key
+    def nodesetID(self,name):
+        &#34;&#34;&#34;
+        Return the integer ID of a nodeset by its name
+
+        Variables:
+        ----------
+
+            name(str): Name of the nodeset
+
+        Return:
+        ----------
+
+            nodeset ID (int)
+        &#34;&#34;&#34;
+        for key in self.nodeset.keys():
+            if(self.nodeset[key][&#39;name&#39;] == name):
+                return key
+
+    def domainElements(self,domain):
+        &#34;&#34;&#34;
+        Return the elements of a given domain ID.
+
+        Variables:
+        ----------
+
+            domain(int): Name of the region
+
+        Return:
+        ----------
+
+            dictionary of elements in that domain.
+        &#34;&#34;&#34;
+        return self.domain[domain][&#39;elements&#39;]
+
+    def allElements(self):
+        &#34;&#34;&#34;
+        Return a dictionary of all the elements of the mesh.
+
+        Return:
+        ----------
+
+            dictionary of all the elements of the mesh.
+        &#34;&#34;&#34;
+        totalElementDict = dict()
+        for key in self.domain.keys():
+            for elem in self.domain[key][&#39;elements&#39;]:
+                totalElementDict[elem] = self.domain[key][&#39;elements&#39;][elem]
+        return totalElementDict</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="interFEBio.xplt.mesh.allElements"><code class="name flex">
+<span>def <span class="ident">allElements</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a dictionary of all the elements of the mesh.</p>
+<h2 id="return">Return:</h2>
+<pre><code>dictionary of all the elements of the mesh.
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def allElements(self):
+    &#34;&#34;&#34;
+    Return a dictionary of all the elements of the mesh.
+
+    Return:
+    ----------
+
+        dictionary of all the elements of the mesh.
+    &#34;&#34;&#34;
+    totalElementDict = dict()
+    for key in self.domain.keys():
+        for elem in self.domain[key][&#39;elements&#39;]:
+            totalElementDict[elem] = self.domain[key][&#39;elements&#39;][elem]
+    return totalElementDict</code></pre>
+</details>
+</dd>
+<dt id="interFEBio.xplt.mesh.domainElements"><code class="name flex">
+<span>def <span class="ident">domainElements</span></span>(<span>self, domain)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the elements of a given domain ID.</p>
+<h2 id="variables">Variables:</h2>
+<pre><code>domain(int): Name of the region
+</code></pre>
+<h2 id="return">Return:</h2>
+<pre><code>dictionary of elements in that domain.
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def domainElements(self,domain):
+    &#34;&#34;&#34;
+    Return the elements of a given domain ID.
+
+    Variables:
+    ----------
+
+        domain(int): Name of the region
+
+    Return:
+    ----------
+
+        dictionary of elements in that domain.
+    &#34;&#34;&#34;
+    return self.domain[domain][&#39;elements&#39;]</code></pre>
+</details>
+</dd>
+<dt id="interFEBio.xplt.mesh.listNodesets"><code class="name flex">
+<span>def <span class="ident">listNodesets</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List all the nodeset names of the mesh</p>
+<h2 id="return">Return:</h2>
+<pre><code>    List of nodeset names
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def listNodesets(self):
+    &#34;&#34;&#34;
+    List all the nodeset names of the mesh
+
+    Return:
+    ----------
+            List of nodeset names
+    &#34;&#34;&#34;
+    return [self.nodeset[x][&#39;name&#39;] for x in self.nodeset.keys()]</code></pre>
+</details>
+</dd>
+<dt id="interFEBio.xplt.mesh.listRegions"><code class="name flex">
+<span>def <span class="ident">listRegions</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List all the regions of the mesh</p>
+<h2 id="return">Return:</h2>
+<pre><code>    List of region names
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def listRegions(self):
+    &#34;&#34;&#34;
+    List all the regions of the mesh
+
+    Return:
+    ----------
+            List of region names
+    &#34;&#34;&#34;
+    return [x for x in self.parts.keys()]</code></pre>
+</details>
+</dd>
+<dt id="interFEBio.xplt.mesh.listSurfaces"><code class="name flex">
+<span>def <span class="ident">listSurfaces</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>List all the surface names of the mesh</p>
+<h2 id="return">Return:</h2>
+<pre><code>    List of surface names
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def listSurfaces(self):
+    &#34;&#34;&#34;
+    List all the surface names of the mesh
+
+    Return:
+    ----------
+            List of surface names
+    &#34;&#34;&#34;
+    return [self.surface[x][&#39;name&#39;] for x in self.surface.keys()]</code></pre>
+</details>
+</dd>
+<dt id="interFEBio.xplt.mesh.nodesetID"><code class="name flex">
+<span>def <span class="ident">nodesetID</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the integer ID of a nodeset by its name</p>
+<h2 id="variables">Variables:</h2>
+<pre><code>name(str): Name of the nodeset
+</code></pre>
+<h2 id="return">Return:</h2>
+<pre><code>nodeset ID (int)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def nodesetID(self,name):
+    &#34;&#34;&#34;
+    Return the integer ID of a nodeset by its name
+
+    Variables:
+    ----------
+
+        name(str): Name of the nodeset
+
+    Return:
+    ----------
+
+        nodeset ID (int)
+    &#34;&#34;&#34;
+    for key in self.nodeset.keys():
+        if(self.nodeset[key][&#39;name&#39;] == name):
+            return key</code></pre>
+</details>
+</dd>
+<dt id="interFEBio.xplt.mesh.regionID"><code class="name flex">
+<span>def <span class="ident">regionID</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the integer ID of a region by its name</p>
+<h2 id="variables">Variables:</h2>
+<pre><code>name(str): Name of the region
+</code></pre>
+<h2 id="return">Return:</h2>
+<pre><code>region ID (int)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def regionID(self,name):
+    &#34;&#34;&#34;
+    Return the integer ID of a region by its name
+
+    Variables:
+    ----------
+
+        name(str): Name of the region
+
+    Return:
+    ----------
+
+        region ID (int)
+    &#34;&#34;&#34;
+    return self.parts[name]</code></pre>
+</details>
+</dd>
+<dt id="interFEBio.xplt.mesh.surfaceID"><code class="name flex">
+<span>def <span class="ident">surfaceID</span></span>(<span>self, name)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the integer ID of a surface by its name</p>
+<h2 id="variables">Variables:</h2>
+<pre><code>name(str): Name of the surface
+</code></pre>
+<h2 id="return">Return:</h2>
+<pre><code>surface ID (int)
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def surfaceID(self,name):
+    &#34;&#34;&#34;
+    Return the integer ID of a surface by its name
+
+    Variables:
+    ----------
+
+        name(str): Name of the surface
+
+    Return:
+    ----------
+
+        surface ID (int)
+    &#34;&#34;&#34;
+    for key in self.surface.keys():
+        if(self.surface[key][&#39;name&#39;] == name):
+            return key</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="interFEBio.xplt.xplt"><code class="flex name class">
+<span>class <span class="ident">xplt</span></span>
+<span>(</span><span>filename)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Class that reads a binary file of FEBio.</p>
+<h2 id="args">Args:</h2>
+<pre><code>filename(str): Name of the xplt binary with extension.
+</code></pre>
+<h2 id="variables">Variables:</h2>
+<pre><code>self.dictionary :   A dictionary containing the results dictionary in the xplt file.
+                    Resume the result variables and type of data for each one.
+
+self.results:       Numpy array of results in the following format:
+                    self.results[time step, region, element/node/surface, component (voigt, starting from 0)]
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class xplt:
+    &#34;&#34;&#34;
+    Class that reads a binary file of FEBio.
+
+    Args:
+    ----------
+
+        filename(str): Name of the xplt binary with extension.
+
+    Variables:
+    ----------
+
+        self.dictionary :   A dictionary containing the results dictionary in the xplt file.
+                            Resume the result variables and type of data for each one.
+
+        self.results:       Numpy array of results in the following format:
+                            self.results[time step, region, element/node/surface, component (voigt, starting from 0)]
+    &#34;&#34;&#34;
+    def __init__(self,filename):
+        self.rigidDictionary = dict()
+        self.time = []
+        self.reader = _binaryReader(filename)
+        self.readMode = &#39;&#39;
+        self._read_xplt(filename)
+
+
+
+    def _readMesh(self):
+        self.mesh = mesh() #Initialize mesh object.
+        elemType = {
+            0 : &#39;HEX8&#39;,
+            1 : &#39;PENTA6&#39;,
+            2 : &#39;TET4&#39;,
+            3 : &#39;QUAD4&#39;,
+            4 : &#39;TRI3&#39;,
+            5 : &#39;TRUSS2&#39;,
+            6 : &#39;HEX20&#39;,
+            7 : &#39;TET10&#39;,
+            8 : &#39;TET15&#39;,
+            9 : &#39;HEX27&#39;
+            }
+
+        nodesPerElement = {
+            &#39;HEX8&#39;   : 8,
+            &#39;PENTA6&#39; : 6,
+            &#39;TET4&#39;   : 4,
+            &#39;QUAD4&#39;  : 4,
+            &#39;TRI3&#39;   : 3,
+            &#39;TRUSS2&#39; : 2,
+            &#39;HEX20&#39; :20,
+            &#39;TET10&#39; : 10,
+            &#39;TET15&#39; : 15,
+            &#39;HEX27&#39; : 27
+        }
+
+        a = self.reader.search_block(&#39;PLT_MESH&#39;)
+        a = self.reader.search_block(&#39;PLT_NODE_SECTION&#39;)
+        a = self.reader.search_block(&#39;PLT_NODE_HEADER&#39;)
+        a = self.reader.search_block(&#39;PLT_NODE_SIZE&#39;)
+        nodeSize = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+        a = self.reader.search_block(&#39;PLT_NODE_DIM&#39;)
+        nodeDim = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+        a = self.reader.search_block(&#39;PLT_NODE_COORDS&#39;)
+        node_coords = zeros([nodeSize, nodeDim])
+        #node_coords = zeros([1, nodeDim])
+        for i in range(nodeSize):
+            id = struct.unpack(&#39;I&#39;, self.reader.read())[0] #Is necessary to store this?
+            for j in range(nodeDim):
+                node_coords[i, j] = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        self.mesh.nodes = node_coords
+
+        a = self.reader.search_block(&#39;PLT_DOMAIN_SECTION&#39;)
+
+        # NOTE: index starts from 0 (in .feb file, index starts from 1)
+        idomain = 1
+        while self.reader.check_block(&#39;PLT_DOMAIN&#39;):
+            a = self.reader.search_block(&#39;PLT_DOMAIN&#39;)
+
+            a = self.reader.search_block(&#39;PLT_DOMAIN_HDR&#39;)
+
+            a = self.reader.search_block(&#39;PLT_DOM_ELEM_TYPE&#39;)
+            dom_elem_type = int(struct.unpack(&#39;I&#39;, self.reader.read())[0])
+
+            a = self.reader.search_block(&#39;PLT_DOM_PART_ID&#39;)
+            dom_part_id = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+
+            a = self.reader.search_block(&#39;PLT_DOM_ELEMS&#39;)
+            dom_n_elems = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+
+            #
+            # a = self.reader.search_block(&#39;PLT_DOM_NAME&#39;)
+            # dom_names = (self.reader.read(a).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;))
+            # print(dom_names)
+            #print(dom_elem_type,dom_part_id,dom_n_elems)
+
+            elemDict = dict()
+            #domainDict[&#39;elements&#39;] = dict()
+            a = self.reader.search_block(&#39;PLT_DOM_ELEM_LIST&#39;)
+            #print(dom_elem_type,dom_mat_ids,dom_n_elems)
+            ne = nodesPerElement[elemType[dom_elem_type]]
+            ##print(ne)
+
+            #elements = dict()
+            while self.reader.check_block(&#39;PLT_ELEMENT&#39;):
+                a = self.reader.search_block(&#39;PLT_ELEMENT&#39;, print_tag=0)
+                element = zeros(ne + 1, dtype=int)
+                for j in range(ne + 1):
+                    element[j] = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                elemDict[element[0]] = element[1:]
+                #elements.append(element)#[1:]
+            #domainDict[&#39;elements&#39;] = elements
+            #dom_elements.append(elements)
+            if(dom_part_id in self.mesh.domain.keys()):
+                #print(&#34;TRUE&#34;)
+                self.mesh.domain[dom_part_id][&#39;elements&#39;].update(elemDict)
+                self.mesh.domain[dom_part_id][&#39;nElems&#39;] = dom_n_elems+self.mesh.domain[dom_part_id][&#39;nElems&#39;]
+            else:
+                domainDict = {&#39;elemType&#39; : elemType[dom_elem_type], &#39;partID&#39; : dom_part_id, &#39;nElems&#39; : dom_n_elems, &#39;elements&#39; : elemDict}
+                #keyName = list(self.mesh.parts.keys())[list(self.mesh.parts.values()).index(dom_part_id)]
+                self.mesh.domain[dom_part_id] = domainDict
+            idomain+=1
+            #self.mesh.elements.append(domainDict)
+
+
+        if self.reader.search_block(&#39;PLT_SURFACE_SECTION&#39;) &gt; 0:
+            surface_ids = []
+            surface_faces = []  # number of faces
+            surface_names = []
+            faces = []
+            face_ids = []
+            face_max_facet_nodes = []
+            while self.reader.check_block(&#39;PLT_SURFACE&#39;):
+                a = self.reader.search_block(&#39;PLT_SURFACE&#39;)
+
+                a = self.reader.search_block(&#39;PLT_SURFACE_HDR&#39;)
+
+                a = self.reader.search_block(&#39;PLT_SURFACE_ID&#39;)
+                surface_ids = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+
+                # number of facets
+                a = self.reader.search_block(&#39;PLT_SURFACE_FACES&#39;)
+                surface_faces = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+
+                a = self.reader.search_block(&#39;PLT_SURFACE_NAME&#39;)
+                # surface name length is specified just above
+                surface_names = (self.reader.read(a).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[-1])
+
+                a = self.reader.search_block(&#39;PLT_SURFACE_MAX_FACET_NODES&#39;)
+                face_max_facet_nodes = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+                if (self.reader.check_block(&#39;PLT_FACE_LIST&#39;) == 0):
+                    continue
+                else:
+                    a = self.reader.search_block(&#39;PLT_FACE_LIST&#39;)
+                facesDict = dict()
+                while self.reader.check_block(&#39;PLT_FACE&#39;):
+                    a = self.reader.search_block(&#39;PLT_FACE&#39;)
+                    cur_cur = self.reader.file.tell()
+
+                    face = zeros(face_max_facet_nodes, dtype=int)
+                    face_ids = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+
+                    # skip (probably specifing the surface element type here)
+                    self.reader.file.seek(4, 1)
+                    # tri3 element
+
+                    for j in range(face_max_facet_nodes):
+                        face[j] = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                    facesDict[face_ids] = face
+                    #faces = (face)
+                    # skip junk
+                    self.reader.file.seek(cur_cur + a, 0)
+                self.mesh.surface[surface_ids] = {&#39;name&#39; : surface_names,
+                                                    &#39;nFaces&#39; : surface_faces,
+                                                    &#39;nNodesPerFacet&#39; : face_max_facet_nodes,
+                                                    &#39;faces&#39; : facesDict
+                                                    }
+                #print(surface_names)
+
+
+        if self.reader.search_block(&#39;PLT_NODESET_SECTION&#39;) &gt; 0:
+
+            nodeset_ids = []
+            nodeset_nodes = []  # number of faces
+            nodeset_names = []
+            nodeset = []
+            #face_ids = []
+            while self.reader.check_block(&#39;PLT_NODESET&#39;):
+                a = self.reader.search_block(&#39;PLT_NODESET&#39;)
+
+                a = self.reader.search_block(&#39;PLT_NODESET_HDR&#39;)
+
+                a = self.reader.search_block(&#39;PLT_NODESET_ID&#39;)
+                nodeset_ids = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+                # number of facets
+                a = self.reader.search_block(&#39;PLT_NODESET_SIZE&#39;)
+                nodeset_nodes = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+                a = self.reader.search_block(&#39;PLT_NODESET_NAME&#39;)
+                # surface name length is specified just above
+                nodeset_names = (self.reader.read(a).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[-1])
+
+
+
+                if (self.reader.check_block(&#39;PLT_NODESET_LIST&#39;) == 0):
+                    continue
+                else:
+                    a = self.reader.search_block(&#39;PLT_NODESET_LIST&#39;)
+                    nodes = []
+                    for j in range(nodeset_nodes):
+                        #&#34;element[j] = struct.unpack(&#39;I&#39;, f.read(4))[0]
+                        nodes.append(struct.unpack(&#39;I&#39;, self.reader.read())[0])
+                    #elements.append(element)
+                self.mesh.nodeset[nodeset_ids] = {
+                                                    &#39;name&#39; : nodeset_names,
+                                                    &#39;nodeNumber&#39; : nodeset_nodes,
+                                                    &#39;nodes&#39; : nodes
+                                                    }
+
+    def _readParts(self):
+        a = self.reader.search_block(&#39;PLT_PARTS_SECTION&#39;)
+        while self.reader.check_block(&#39;PLT_PART&#39;):
+            a = self.reader.search_block(&#39;PLT_PART&#39;)
+            a = self.reader.search_block(&#39;PLT_PART_ID&#39;)
+            partID = (struct.unpack(&#39;I&#39;, self.reader.read())[0])
+            a = self.reader.search_block(&#39;PLT_PART_NAME&#39;)
+            partName = (self.reader.read(a).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[0])
+            #print(partID,partName)
+            self.mesh.parts[partName] = partID
+
+        #print(self.mesh.parts)
+
+    def _readDict(self):
+
+        self.itemType = {0 : &#39;FLOAT&#39;, 1: &#39;VEC3F&#39;, 2 : &#39;MAT3FS&#39;, 3 : &#39;MAT3FD&#39;, 4 : &#39;TENS4FS&#39;, 5 : &#39;MAT3F&#39;}
+        #https://github.com/febiosoftware/FEBio/blob/master/Documentation/FEBioBinaryDatabaseSpecification.pdf
+        self.itemStorageFmt = {0 : &#39;NODE&#39;, 1: &#39;ITEM&#39;, 2 : &#39;MULT&#39;, 3 : &#39;REGION&#39;, 4 : &#39;MATPOINTS&#39;}
+        #https://github.com/febiosoftware/FEBio/blob/f9a3cdd74d1864ec0886decc918ef8e805344fbc/FECore/fecore_enum.h
+        self.dictionary = dict()
+        self.reader.search_block(&#39;PLT_DICTIONARY&#39;)
+
+        ############### NODAL DICTIONARY ###################
+        a = self.reader.search_block(&#39;PLT_DIC_NODAL&#39;)
+        while self.reader.check_block(&#39;PLT_DIC_ITEM&#39;):
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM&#39;)
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_TYPE&#39;)
+            item_types = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_FMT&#39;)
+            item_formats = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_NAME&#39;)
+            item_names = (self.reader.read(64).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[0])
+            self.dictionary[item_names] = {&#39;type&#39; : self.itemType[item_types], &#39;format&#39; : self.itemStorageFmt[item_formats]}
+        ############### NODAL DICTIONARY ###################
+
+        ############### DOMAIN DICTIONARY ###################
+        a = self.reader.search_block(&#39;PLT_DIC_DOMAIN&#39;)
+        while self.reader.check_block(&#39;PLT_DIC_ITEM&#39;):
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM&#39;)
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_TYPE&#39;)
+            item_types = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_FMT&#39;)
+            item_formats = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+            #print(item_formats,item_types)
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_NAME&#39;)
+            item_names = (self.reader.read(64).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[0])
+            self.dictionary[item_names] = {&#39;type&#39; : self.itemType[item_types], &#39;format&#39; : self.itemStorageFmt[item_formats]}
+        ############### DOMAIN DICTIONARY ###################
+
+        ############### SURFACE DICTIONARY ###################
+        a = self.reader.search_block(&#39;PLT_DIC_SURFACE&#39;)
+        while self.reader.check_block(&#39;PLT_DIC_ITEM&#39;):
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM&#39;)
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_TYPE&#39;)
+            item_types = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_FMT&#39;)
+            item_formats = (int(struct.unpack(&#39;I&#39;, self.reader.read())[0]))
+            a = self.reader.search_block(&#39;PLT_DIC_ITEM_NAME&#39;)
+            item_names = (self.reader.read(64).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#39;\x00&#39;)[0])
+            self.dictionary[item_names] = {&#39;type&#39; : self.itemType[item_types], &#39;format&#39; : self.itemStorageFmt[item_formats]}
+        ############### SURFACE DICTIONARY ###################
+
+        self.results = dict()
+
+        for key in self.dictionary.keys():
+            #self.results[key] = np.array([])
+            self.results[key] = []
+
+        self.dictNodal = (sum(np.fromiter((1 for v in self.dictionary.values() if v[&#39;format&#39;] == &#39;NODE&#39;) ,dtype=int)))
+        self.dictItem = (sum(np.fromiter((1 for v in self.dictionary.values() if v[&#39;format&#39;] == &#39;ITEM&#39;) ,dtype=int)))
+
+
+
+    def _readObjState(self):
+        a = self.reader.search_block(&#39;PLT_OBJECTS_SECTION&#39;)
+        a = self.reader.search_block(&#39;PLT_POINT_OBJECT&#39;)
+        a = self.reader.search_block(&#39;PLT_OBJECT_ID&#39;)
+        objID = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+
+        #
+        a = self.reader.search_block(&#39;PLT_OBJECT_NAME&#39;)
+        #print(a)
+        objName = (self.reader.read(a).decode(&#34;utf-8&#34;,errors=&#34;ignore&#34;).split(&#34;\x00&#34;)[-1])
+
+        a = self.reader.search_block(&#39;PLT_OBJECT_TAG&#39;)
+        objTAG = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+
+        a = self.reader.search_block(&#39;PLT_OBJECT_POS&#39;)
+        objPOSX = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        objPOSY = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        objPOSZ = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+
+
+        a = self.reader.search_block(&#39;PLT_OBJECT_ROT&#39;)
+        objROTX = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        objROTY = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        objROTZ = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+        objROTW = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+
+        a = self.reader.search_block(&#39;PLT_OBJECT_DATA&#39;)
+        a = self.reader.search_block(&#39;PLT_DIC_ITEM_TYPE&#39;)
+        itemType = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+        a = self.reader.search_block(&#39;PLT_DIC_ITEM_FMT&#39;)
+        itemFmt = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+
+        self.rigidDictionary[objID] = { &#39;name&#39; : objName,
+                                        &#39;tag&#39; : objTAG,
+                                        &#39;pos&#39; : [objPOSX,objPOSY,objPOSZ],
+                                        &#39;rot&#39; : [objROTX,objROTY,objROTZ,objROTW],
+                                        &#39;itemType&#39; : itemType,
+                                        &#39;itemFmt&#39; : itemFmt
+                                    }
+
+    def _skipState(self):
+        a = self.reader.seek_block(&#39;PLT_STATE&#39;)
+        self.reader.read(a)
+
+    def readSteps(self,stepList):
+        &#34;&#34;&#34;
+        Read a list of time steps.
+
+        Variables:
+        ----------
+
+            stepList(list): List of integers. Time steps to be read.
+
+        TODO:
+        ----------
+
+            Fix this function. The last step of the list can&#39;t be readed.
+
+        &#34;&#34;&#34;
+        if(self.readMode == &#39;readAllStates&#39;):
+            sys.exit(&#34;readSteps[list] is not compatible with readAllStates function&#34;)
+
+        for i in range(len(stepList)):
+            if(i == 0):
+                stepDiff = stepList[i]
+            else:
+                stepDiff = stepList[i] - stepList[i-1]
+            print(stepDiff)
+            if(i&gt;0):
+                stepDiff-=1
+
+            for skip in range(stepDiff):
+                try:
+                    self._skipState()
+                except:
+                    sys.exit(&#34;*******************************\n\n&#34;+&#34;Error: No more steps to skip!!!\n\n&#34;+&#34;*******************************&#34;)
+            self._readState()
+        self.readMode = &#39;readSteps&#39;
+            #try:
+            #    self.skipState()
+            #except:
+            #    sys.error(&#34;No more states to skip&#34;)
+        #self.readState()
+        self._clearDict()
+
+
+    def _readState(self):
+
+        var = 0
+
+        dataDim = {&#39;FLOAT&#39; : 1, &#39;VEC3F&#39; : 3, &#39;MAT3FD&#39; : 3, &#39;MAT3FS&#39; : 6, &#39;MAT3F&#39; : 9, &#39;TENS4FS&#39; : 21}
+
+        # # now extract the information from the desired state
+        a = self.reader.search_block(&#39;PLT_STATE&#39;)
+        a = self.reader.search_block(&#39;PLT_STATE_HEADER&#39;)
+        # a = self.reader.search_block(&#39;PLT_STATE_HDR_ID&#39;)
+        # stateID = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+        # print(stateID)
+
+        a = self.reader.search_block(&#39;PLT_STATE_HDR_TIME&#39;)
+        stateTime = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+
+
+        a = self.reader.search_block(&#39;PLT_STATE_STATUS&#39;)
+        stateStatus = struct.unpack(&#39;I&#39;, self.reader.read())[0] #What is state status?
+        #print(&#34;STATSTATUS&#34;,stateStatus)
+        if(stateStatus != 0):
+            return 1
+        self.time.append(stateTime)
+        n_node_data = 0
+        item_def_doms = []
+        a = self.reader.search_block(&#39;PLT_STATE_DATA&#39;)
+        a = self.reader.search_block(&#39;PLT_NODE_DATA&#39;)
+        while self.reader.check_block(&#39;PLT_STATE_VARIABLE&#39;):
+            a = self.reader.search_block(&#39;PLT_STATE_VARIABLE&#39;)
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_ID&#39;)
+            varID = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+            #print(varID)
+
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_DATA&#39;)
+
+            a_end = self.reader.file.tell() + a
+
+            #dictKey = list(self.dictionary.keys())[varID-1]
+            dictKey = list(self.dictionary.keys())[var]
+            #print(dictKey)
+            varDataDim = (dataDim[self.dictionary[dictKey][&#39;type&#39;]])
+            def_doms = []
+            #domainData = np.array([])
+            domainData = []
+            while(self.reader.file.tell() &lt; a_end):
+                dom_num = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                data_size = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                n_data = int(data_size / varDataDim / 4.0)
+                def_doms.append(dom_num - 1)
+                #print(&#34;dom num:&#34;,dom_num)
+
+                #print(dom_num,data_size,n_data)
+                #print(&#39;number of node data for domain %s = %d&#39; % (dom_num, n_data))
+                if n_data &gt; 0:
+                    elem_data = zeros([n_data, varDataDim])
+                    for i in range(0, n_data):
+                        for j in range(0, varDataDim):
+                            elem_data[i, j] = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+                domainData.append(elem_data)
+                #domainData = np.append(domainData,elem_data)
+            self.results[dictKey].append(domainData)
+            var+=1
+            #self.results[dictKey] = np.append(self.results[dictKey],domainData)
+                #print(elem_data)
+
+
+            item_def_doms.append(def_doms)
+        #print(item_def_doms)
+
+        a = self.reader.search_block(&#39;PLT_ELEMENT_DATA&#39;)
+        while self.reader.check_block(&#39;PLT_STATE_VARIABLE&#39;):
+            a = self.reader.search_block(&#39;PLT_STATE_VARIABLE&#39;)
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_ID&#39;)
+            varID = struct.unpack(&#39;I&#39;, self.reader.read())[0]+self.dictNodal
+            #print(varID)
+
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_DATA&#39;)
+
+            a_end = self.reader.file.tell() + a
+
+            #dictKey = list(self.dictionary.keys())[varID-1]
+            dictKey = list(self.dictionary.keys())[var]
+            #print(dictKey)
+            varDataDim = (dataDim[self.dictionary[dictKey][&#39;type&#39;]])
+            def_doms = []
+            domainData = []
+            #domainData = np.array([])
+            while(self.reader.file.tell() &lt; a_end):
+                dom_num = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                data_size = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                n_data = int(data_size / varDataDim / 4.0)
+                def_doms.append(dom_num - 1)
+                #print(&#34;dom num:&#34;,dom_num)
+
+                #print(dom_num,data_size,n_data)
+                #print(&#39;number of node data for domain %s = %d&#39; % (dom_num, n_data))
+                if n_data &gt; 0:
+                    elem_data = zeros([n_data, varDataDim])
+                    for i in range(0, n_data):
+                        for j in range(0, varDataDim):
+                            elem_data[i, j] = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+                domainData.append(elem_data)
+                #domainData = np.append(domainData,elem_data)
+                #print(elem_data)
+
+            item_def_doms.append(def_doms)
+            self.results[dictKey].append(domainData)
+            var+=1
+            #self.results[dictKey] = np.append(self.results[dictKey],domainData)
+
+
+        a = self.reader.search_block(&#39;PLT_FACE_DATA&#39;)
+        while self.reader.check_block(&#39;PLT_STATE_VARIABLE&#39;):
+            a = self.reader.search_block(&#39;PLT_STATE_VARIABLE&#39;)
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_ID&#39;)
+            varID = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+            #print(varID,self.dictNodal,self.dictItem)
+
+
+            a = self.reader.search_block(&#39;PLT_STATE_VAR_DATA&#39;)
+
+            a_end = self.reader.file.tell() + a
+
+            #dictKey = list(self.dictionary.keys())[varID-1]
+            dictKey = list(self.dictionary.keys())[var]
+            #print(dictKey)
+            varDataDim = (dataDim[self.dictionary[dictKey][&#39;type&#39;]])
+            #print(varDataDim)
+            def_doms = []
+            domainData = []
+            #domainData = np.array([])
+            while(self.reader.file.tell() &lt; a_end):
+                dom_num = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                data_size = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+                n_data = int(data_size / varDataDim / 4.0)
+                def_doms.append(dom_num - 1)
+                #print(&#34;dom num:&#34;,dom_num)
+
+                #print(dom_num,data_size,n_data)
+                #print(&#39;number of node data for domain %s = %d&#39; % (dom_num, n_data))
+                if n_data &gt; 0:
+                    elem_data = zeros([n_data, varDataDim])
+                    for i in range(0, n_data):
+                        for j in range(0, varDataDim):
+                            elem_data[i, j] = struct.unpack(&#39;f&#39;, self.reader.read())[0]
+                #domainData = np.append(domainData,elem_data)
+                domainData.append(elem_data)
+                #print(domainData)
+                #domainData = np.array(domainData)
+                #print(elem_data)
+
+            item_def_doms.append(def_doms)
+
+            self.results[dictKey].append(domainData)
+            var+=1
+            #self.results[dictKey] = np.append(self.results[dictKey],domainData)
+        return 0
+
+
+    def readAllStates(self):
+        &#34;&#34;&#34;
+        Read all the steps of the xplt file.
+        &#34;&#34;&#34;
+        if(self.readMode) == &#39;readSteps&#39;:
+            sys.exit(&#34;readAllStates is not compatible with readSteps[list]!&#34;)
+        i=1
+        while (1):
+            try:
+                #print(i)
+
+                status = self._readState()
+                #print(i,status)
+                i+=1
+                if(status != 0):
+                    break
+            except:
+                #print(&#34;FAILEDD&#34;)
+                break
+        self.readMode = &#39;readAllStates&#39;
+        self._clearDict()
+
+    def _clearDict(self):
+        for key in self.results:
+            self.results[key] = np.array(self.results[key])
+            #print(self.results[key].shape)
+
+    def _read_xplt(self,filename):
+        #if(int(&#39;0x0031&#39;, base=16) == struct.unpack(&#39;I&#39;, self.reader.read())[0]):
+            #print(&#39;Correct FEBio format&#39;)
+        #else:
+            #sys.exit(&#34;The provided file is not a valid xplt file&#34;)
+        self.reader.search_block(&#39;PLT_ROOT&#39;)
+        self.reader.search_block(&#39;PLT_HEADER&#39;)
+        self.reader.search_block(&#39;PLT_HDR_VERSION&#39;)
+        self.version = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+
+        self.reader.search_block(&#39;PLT_HDR_COMPRESSION&#39;)
+        self.compression = struct.unpack(&#39;I&#39;, self.reader.read())[0]
+
+        self._readDict()
+        self._readMesh()
+        self._readParts()</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="interFEBio.xplt.xplt.readAllStates"><code class="name flex">
+<span>def <span class="ident">readAllStates</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read all the steps of the xplt file.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def readAllStates(self):
+    &#34;&#34;&#34;
+    Read all the steps of the xplt file.
+    &#34;&#34;&#34;
+    if(self.readMode) == &#39;readSteps&#39;:
+        sys.exit(&#34;readAllStates is not compatible with readSteps[list]!&#34;)
+    i=1
+    while (1):
+        try:
+            #print(i)
+
+            status = self._readState()
+            #print(i,status)
+            i+=1
+            if(status != 0):
+                break
+        except:
+            #print(&#34;FAILEDD&#34;)
+            break
+    self.readMode = &#39;readAllStates&#39;
+    self._clearDict()</code></pre>
+</details>
+</dd>
+<dt id="interFEBio.xplt.xplt.readSteps"><code class="name flex">
+<span>def <span class="ident">readSteps</span></span>(<span>self, stepList)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read a list of time steps.</p>
+<h2 id="variables">Variables:</h2>
+<pre><code>stepList(list): List of integers. Time steps to be read.
+</code></pre>
+<h2 id="todo">TODO:</h2>
+<pre><code>Fix this function. The last step of the list can't be readed.
+</code></pre></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def readSteps(self,stepList):
+    &#34;&#34;&#34;
+    Read a list of time steps.
+
+    Variables:
+    ----------
+
+        stepList(list): List of integers. Time steps to be read.
+
+    TODO:
+    ----------
+
+        Fix this function. The last step of the list can&#39;t be readed.
+
+    &#34;&#34;&#34;
+    if(self.readMode == &#39;readAllStates&#39;):
+        sys.exit(&#34;readSteps[list] is not compatible with readAllStates function&#34;)
+
+    for i in range(len(stepList)):
+        if(i == 0):
+            stepDiff = stepList[i]
+        else:
+            stepDiff = stepList[i] - stepList[i-1]
+        print(stepDiff)
+        if(i&gt;0):
+            stepDiff-=1
+
+        for skip in range(stepDiff):
+            try:
+                self._skipState()
+            except:
+                sys.exit(&#34;*******************************\n\n&#34;+&#34;Error: No more steps to skip!!!\n\n&#34;+&#34;*******************************&#34;)
+        self._readState()
+    self.readMode = &#39;readSteps&#39;
+        #try:
+        #    self.skipState()
+        #except:
+        #    sys.error(&#34;No more states to skip&#34;)
+    #self.readState()
+    self._clearDict()</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="interFEBio" href="index.html">interFEBio</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="interFEBio.xplt.mesh" href="#interFEBio.xplt.mesh">mesh</a></code></h4>
+<ul class="two-column">
+<li><code><a title="interFEBio.xplt.mesh.allElements" href="#interFEBio.xplt.mesh.allElements">allElements</a></code></li>
+<li><code><a title="interFEBio.xplt.mesh.domainElements" href="#interFEBio.xplt.mesh.domainElements">domainElements</a></code></li>
+<li><code><a title="interFEBio.xplt.mesh.listNodesets" href="#interFEBio.xplt.mesh.listNodesets">listNodesets</a></code></li>
+<li><code><a title="interFEBio.xplt.mesh.listRegions" href="#interFEBio.xplt.mesh.listRegions">listRegions</a></code></li>
+<li><code><a title="interFEBio.xplt.mesh.listSurfaces" href="#interFEBio.xplt.mesh.listSurfaces">listSurfaces</a></code></li>
+<li><code><a title="interFEBio.xplt.mesh.nodesetID" href="#interFEBio.xplt.mesh.nodesetID">nodesetID</a></code></li>
+<li><code><a title="interFEBio.xplt.mesh.regionID" href="#interFEBio.xplt.mesh.regionID">regionID</a></code></li>
+<li><code><a title="interFEBio.xplt.mesh.surfaceID" href="#interFEBio.xplt.mesh.surfaceID">surfaceID</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="interFEBio.xplt.xplt" href="#interFEBio.xplt.xplt">xplt</a></code></h4>
+<ul class="">
+<li><code><a title="interFEBio.xplt.xplt.readAllStates" href="#interFEBio.xplt.xplt.readAllStates">readAllStates</a></code></li>
+<li><code><a title="interFEBio.xplt.xplt.readSteps" href="#interFEBio.xplt.xplt.readSteps">readSteps</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
